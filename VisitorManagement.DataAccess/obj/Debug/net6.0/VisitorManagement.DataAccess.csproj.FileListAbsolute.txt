@@ -1,0 +1,17 @@
+C:\Users\Nivetha M\OneDrive\Desktop\Resumefolder\Latest_resume_March23\May_TEST\SocietyVisitorManagement\VisitorManagement.DataAccess\bin\Debug\net6.0\VisitorManagement.DataAccess.deps.json
+C:\Users\Nivetha M\OneDrive\Desktop\Resumefolder\Latest_resume_March23\May_TEST\SocietyVisitorManagement\VisitorManagement.DataAccess\bin\Debug\net6.0\VisitorManagement.DataAccess.runtimeconfig.json
+C:\Users\Nivetha M\OneDrive\Desktop\Resumefolder\Latest_resume_March23\May_TEST\SocietyVisitorManagement\VisitorManagement.DataAccess\bin\Debug\net6.0\VisitorManagement.DataAccess.dll
+C:\Users\Nivetha M\OneDrive\Desktop\Resumefolder\Latest_resume_March23\May_TEST\SocietyVisitorManagement\VisitorManagement.DataAccess\bin\Debug\net6.0\VisitorManagement.DataAccess.pdb
+C:\Users\Nivetha M\OneDrive\Desktop\Resumefolder\Latest_resume_March23\May_TEST\SocietyVisitorManagement\VisitorManagement.DataAccess\bin\Debug\net6.0\VisitorManagement.Models.dll
+C:\Users\Nivetha M\OneDrive\Desktop\Resumefolder\Latest_resume_March23\May_TEST\SocietyVisitorManagement\VisitorManagement.DataAccess\bin\Debug\net6.0\VisitorManagement.Models.pdb
+C:\Users\Nivetha M\OneDrive\Desktop\Resumefolder\Latest_resume_March23\May_TEST\SocietyVisitorManagement\VisitorManagement.DataAccess\obj\Debug\net6.0\VisitorManagement.DataAccess.csproj.AssemblyReference.cache
+C:\Users\Nivetha M\OneDrive\Desktop\Resumefolder\Latest_resume_March23\May_TEST\SocietyVisitorManagement\VisitorManagement.DataAccess\obj\Debug\net6.0\VisitorManagement.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Nivetha M\OneDrive\Desktop\Resumefolder\Latest_resume_March23\May_TEST\SocietyVisitorManagement\VisitorManagement.DataAccess\obj\Debug\net6.0\VisitorManagement.DataAccess.AssemblyInfoInputs.cache
+C:\Users\Nivetha M\OneDrive\Desktop\Resumefolder\Latest_resume_March23\May_TEST\SocietyVisitorManagement\VisitorManagement.DataAccess\obj\Debug\net6.0\VisitorManagement.DataAccess.AssemblyInfo.cs
+C:\Users\Nivetha M\OneDrive\Desktop\Resumefolder\Latest_resume_March23\May_TEST\SocietyVisitorManagement\VisitorManagement.DataAccess\obj\Debug\net6.0\VisitorManagement.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Nivetha M\OneDrive\Desktop\Resumefolder\Latest_resume_March23\May_TEST\SocietyVisitorManagement\VisitorManagement.DataAccess\obj\Debug\net6.0\VisitorManagement.DataAccess.csproj.CopyComplete
+C:\Users\Nivetha M\OneDrive\Desktop\Resumefolder\Latest_resume_March23\May_TEST\SocietyVisitorManagement\VisitorManagement.DataAccess\obj\Debug\net6.0\VisitorManagement.DataAccess.dll
+C:\Users\Nivetha M\OneDrive\Desktop\Resumefolder\Latest_resume_March23\May_TEST\SocietyVisitorManagement\VisitorManagement.DataAccess\obj\Debug\net6.0\refint\VisitorManagement.DataAccess.dll
+C:\Users\Nivetha M\OneDrive\Desktop\Resumefolder\Latest_resume_March23\May_TEST\SocietyVisitorManagement\VisitorManagement.DataAccess\obj\Debug\net6.0\VisitorManagement.DataAccess.pdb
+C:\Users\Nivetha M\OneDrive\Desktop\Resumefolder\Latest_resume_March23\May_TEST\SocietyVisitorManagement\VisitorManagement.DataAccess\obj\Debug\net6.0\VisitorManagement.DataAccess.genruntimeconfig.cache
+C:\Users\Nivetha M\OneDrive\Desktop\Resumefolder\Latest_resume_March23\May_TEST\SocietyVisitorManagement\VisitorManagement.DataAccess\obj\Debug\net6.0\ref\VisitorManagement.DataAccess.dll
