@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,36 +12,28 @@ namespace VisitorManagement.Service.service
 {
     public class VisitordetailService : IVisitorRepo
     {
-        private readonly VisitorCategoryDBContext _DBforVDcontext;
+        private readonly VisitorCategoryDBContext _DBforVDcontext; // VD - Visitordetails
         public VisitordetailService(VisitorCategoryDBContext dbforVDContext)
         {
             _DBforVDcontext = dbforVDContext;
         }
-        //public async Task CreateVisitor(Visitordetails visitors)
-        //{
-        //    await _DBforVDcontext.Visitordetails.AddAsync(visitors);
-        //    await save();
-
-        //}
-        public async Task CreateVisitor(Visitordetails visitors)
+       public async Task CreateVisitor(Visitordetails visitors)
         {
 
             await _DBforVDcontext.Visitordetails.AddAsync(visitors);
             await save();
 
         }
-
-        public async Task Deletevisitory(Visitordetails visitordetails)
+        public async Task DeleteVisitor(Visitordetails visitordetails)
         {
           _DBforVDcontext.Visitordetails.Remove(visitordetails);
             await save();
-            
         }
 
-        public async Task<Visitordetails> Fetchdata(int id)
+        public async Task<Visitordetails> FindVisitorById(int id)
         {
-            var orders = await _DBforVDcontext.Visitordetails.FindAsync(id);
-            return orders;
+            var visitorDetails = await _DBforVDcontext.Visitordetails.FindAsync(id);
+            return visitorDetails;
         }
 
         public async Task<List<Visitordetails>> GetAllVisitors()
@@ -49,10 +41,10 @@ namespace VisitorManagement.Service.service
             var visitors = await _DBforVDcontext.Visitordetails.Include(a => a.VisitorLog).ToListAsync();
             return visitors;
         }
-        public async Task<List<Visitordetails>> GetVisitorbyid(int id)
+        public async Task<List<Visitordetails>> GetVisitorById(int id)
         {
-            var visitorbyid = await _DBforVDcontext.Visitordetails.Where(a => a.VisitorId == id).Include(_ => _.VisitorLog).ToListAsync();
-             return visitorbyid;
+            var visitorById = await _DBforVDcontext.Visitordetails.Where(a => a.VisitorId == id).Include(_ => _.VisitorLog).ToListAsync();
+             return visitorById;
         }
 
         public async Task save()
@@ -60,7 +52,7 @@ namespace VisitorManagement.Service.service
             await _DBforVDcontext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Visitordetails>> Searchbyvisitor(string Mobileno, string vehicleno)
+        public async Task<IEnumerable<Visitordetails>> SearchByVisitorDetails(string Mobileno, string vehicleno)
         {
             IQueryable<Visitordetails> query = _DBforVDcontext.Visitordetails;
 
@@ -76,7 +68,7 @@ namespace VisitorManagement.Service.service
 
             return await query.ToListAsync();
         }
-        public async Task Updatevisitor(Visitordetails visitordetails)
+        public async Task UpdateVisitor(Visitordetails visitordetails)
         {
             _DBforVDcontext.Visitordetails.Update(visitordetails);
             await save();
