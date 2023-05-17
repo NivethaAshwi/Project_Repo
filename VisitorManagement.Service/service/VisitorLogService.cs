@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,12 +12,12 @@ namespace VisitorManagement.Service.service
     public class VisitorLogService : IVisitorLogRepo
      
     {
-        private readonly VisitorCategoryDBContext _dbforVLdetails;
+        private readonly VisitorCategoryDBContext _dbforVLdetails; //VL - Visitor Logs
         public VisitorLogService(VisitorCategoryDBContext dBContext)
         {
             _dbforVLdetails = dBContext;
         }
-        public async Task CreateVisitorlog(VisitorLogsDetails visitors)
+        public async Task CreateVisitorLog(VisitorLogsDetails visitors)
         {
            
             await _dbforVLdetails.LogDetails.AddAsync(visitors);
@@ -25,7 +25,7 @@ namespace VisitorManagement.Service.service
             await save();
         }
 
-        public async Task Deletevisitorylog(VisitorLogsDetails visitordetails)
+        public async Task DeleteVisitoryLog(VisitorLogsDetails visitordetails)
         {
             _dbforVLdetails.LogDetails.Remove(visitordetails);
             await save();
@@ -33,15 +33,15 @@ namespace VisitorManagement.Service.service
 
         public async Task<List<VisitorLogsDetails>> GetAllVisitorLogs()
         {
-            var visitorlogs =   _dbforVLdetails.LogDetails.ToList();
-            return visitorlogs;
+            var visitorLogs =   _dbforVLdetails.LogDetails.ToList();
+            return visitorLogs;
 
         }
 
-        public async Task<VisitorLogsDetails> GetVisitorlogbyid(int id)
+        public async Task<VisitorLogsDetails> GetVisitorLogById(int id)
         {
-            var logbyid = await _dbforVLdetails.LogDetails.FindAsync(id);
-            return logbyid;
+            var visitorLogs = await _dbforVLdetails.LogDetails.FindAsync(id);
+            return visitorLogs;
         }
 
         public async Task save()
@@ -50,7 +50,7 @@ namespace VisitorManagement.Service.service
             
         }
 
-        public async Task Updatevisitorlog(VisitorLogsDetails visitordetails)
+        public async Task UpdateVisitorLog(VisitorLogsDetails visitordetails)
         {
              _dbforVLdetails.LogDetails.Update(visitordetails);
             await save();
