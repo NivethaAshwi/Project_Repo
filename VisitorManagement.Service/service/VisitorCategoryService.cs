@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
@@ -13,7 +13,7 @@ namespace VisitorManagement.Service.service
 {
     public class VisitorCategoryService : ICategoryRepo
     {
-        private readonly VisitorCategoryDBContext _DBforCDcontext;
+        private readonly VisitorCategoryDBContext _DBforCDcontext; //CD - Categorydetails
         public VisitorCategoryService(VisitorCategoryDBContext dbcontext)
         {
             _DBforCDcontext = dbcontext;
@@ -30,20 +30,20 @@ namespace VisitorManagement.Service.service
             _DBforCDcontext.VisitorCategoryDetail.Remove(visitorCategory);
             await save();
         }
-        public async Task<VisitorCategoryDetails> finddata(int id)
+        public async Task<VisitorCategoryDetails> FindCategoriesById(int id)
         {
-            var contact = await _DBforCDcontext.VisitorCategoryDetail.FindAsync(id);
-            return contact;
+            var categoryDetails = await _DBforCDcontext.VisitorCategoryDetail.FindAsync(id);
+            return categoryDetails;
         }
         public async Task<List<VisitorCategoryDetails>> GetAllCategories()
         {
-            var categories = await _DBforCDcontext.VisitorCategoryDetail.Include(c => c.Visitordetails).ToListAsync(); 
+            var categories = await _DBforCDcontext.VisitorCategoryDetail.Include(visitor => visitor.Visitordetails).ToListAsync(); 
             return categories;
         }
 
-        public async Task<List<VisitorCategoryDetails>> GetCategorybyId(int id)
+        public async Task<List<VisitorCategoryDetails>> GetCategoryById(int id)
         {
-            var category = await _DBforCDcontext.VisitorCategoryDetail.Where(a => a.VisitorCategoryId == id).Include(_ => _.Visitordetails).ToListAsync();
+            var category = await _DBforCDcontext.VisitorCategoryDetail.Where(a => a.VisitorCategoryId == id).Include(visitor => visitor.Visitordetails).ToListAsync();
             return category;
         }
 
