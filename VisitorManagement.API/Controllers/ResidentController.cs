@@ -84,7 +84,7 @@ namespace VisitorManagement.API.Controllers
                     _logger.LogInformation("Executing {Action}", nameof(InsertResidentDetails));
                     var addResident = _mapper.Map<ResidentDetails>(addResidentDetails);
                     await _residentService.CreateResident(addResident);
-                    return CreatedAtAction("InsertResidentdetails", new { id = addResident.ResidentId }, addResident);
+                    return CreatedAtAction("InsertResidentDetails", new { id = addResident.ResidentId }, addResident);
                 }
                 else
                 {
@@ -152,8 +152,6 @@ namespace VisitorManagement.API.Controllers
                 {
                     return Ok(result);
                 }
-
-                
                 return NotFound();
             }
             catch (Exception)
