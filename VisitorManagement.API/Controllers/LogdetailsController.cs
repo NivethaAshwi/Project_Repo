@@ -48,7 +48,7 @@ namespace VisitorManagement.API.Controllers
             try
             {
                 _logger.LogInformation("Executing {Action} with id: {id}", nameof(GetVisitorLogById), id);
-                var visitorLogById = await _visitorLogRepo.GetVisitorlogbyid(id);
+                var visitorLogById = await _visitorLogRepo.GetVisitorLogById(id);
                 if (visitorLogById == null)
                 {
                     _logger.LogError($"Error while try to get visitorlog by id record");
@@ -75,7 +75,7 @@ namespace VisitorManagement.API.Controllers
 
                     _logger.LogInformation("Executing {Action} ", nameof(AddVisitorLogs));
                     var addLogs = _mapper.Map<VisitorLogsDetails>(addvisitorslog);
-                    await _visitorLogRepo.CreateVisitorlog(addLogs);
+                    await _visitorLogRepo.CreateVisitorLog(addLogs);
                     return CreatedAtAction("AddVisitorlogs", new { id = addLogs.VisitorLogId }, addLogs);
                 }
                 else
@@ -101,7 +101,7 @@ namespace VisitorManagement.API.Controllers
                     return BadRequest();
                 }
                 var updatelogs = _mapper.Map<VisitorLogsDetails>(updatelog);
-                await _visitorLogRepo.Updatevisitorlog(updatelogs);
+                await _visitorLogRepo.UpdateVisitorLog(updatelogs);
                 return NoContent();
             }
             catch(Exception)
@@ -121,8 +121,8 @@ namespace VisitorManagement.API.Controllers
                 {
                     return BadRequest();
                 }
-                var logById = await _visitorLogRepo.GetVisitorlogbyid(id);
-                await _visitorLogRepo.Deletevisitorylog(logById);
+                var logById = await _visitorLogRepo.GetVisitorLogById(id);
+                await _visitorLogRepo.DeleteVisitoryLog(logById);
                 return NoContent();
             }
             catch (Exception)
