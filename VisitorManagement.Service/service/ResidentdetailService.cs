@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace VisitorManagement.Service.service
 {
     public class ResidentdetailService : IResidentRenpo
     {
-        private readonly VisitorCategoryDBContext _dbforRDdetails;
+        private readonly VisitorCategoryDBContext _dbforRDdetails;  //RD - Resident details
         public ResidentdetailService(VisitorCategoryDBContext dBContext)
         {
             _dbforRDdetails = dBContext;
@@ -24,7 +24,7 @@ namespace VisitorManagement.Service.service
             await _dbforRDdetails.ResidentDetails.AddAsync(visitors);
             await save();
         }
-        public async Task Deleteresident(ResidentDetails visitordetails)
+        public async Task DeleteResident(ResidentDetails visitordetails)
         {
             _dbforRDdetails.ResidentDetails.Remove(visitordetails);
             await save();
@@ -34,7 +34,7 @@ namespace VisitorManagement.Service.service
             var residents = await _dbforRDdetails.ResidentDetails.Include(a => a.LogDetails).ToListAsync();
             return residents;
         }
-        public async Task<List<ResidentDetails>> GetResidentbyid(int id)
+        public async Task<List<ResidentDetails>> GetResidentById(int id)
         {
             var residentbyId = await _dbforRDdetails.ResidentDetails.Where(a => a.ResidentId == id).Include(_ => _.LogDetails).ToListAsync();
             return residentbyId;
@@ -43,7 +43,7 @@ namespace VisitorManagement.Service.service
         {
             await _dbforRDdetails.SaveChangesAsync();
         }
-        public async Task<IEnumerable<ResidentDetails>> Searchbyresident(string FlatID, string FN, string LN)
+        public async Task<IEnumerable<ResidentDetails>> SearchByDetails(string FlatID, string FN, string LN)
         {
             IQueryable<ResidentDetails> query = _dbforRDdetails.ResidentDetails;
             if(!string.IsNullOrEmpty(FlatID))
@@ -62,7 +62,7 @@ namespace VisitorManagement.Service.service
 
             return await query.ToListAsync();
         }
-        public async Task<ResidentDetails> searchresident(int id)
+        public async Task<ResidentDetails> FindResidentsInfo(int id)
         {
 
             var findRD = await _dbforRDdetails.ResidentDetails.FindAsync(id);
