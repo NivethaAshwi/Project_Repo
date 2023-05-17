@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -35,8 +35,8 @@ namespace VisitorManagement.API.Controllers
             try
             {
                 _logger.LogInformation("Executing {Action}", nameof(GetResident));
-                var Residents = await _residentService.GetAllResident();
-                var residentDTo = _mapper.Map<List<GetResidentDTO>>(Residents);
+                var residents = await _residentService.GetAllResident();
+                var residentDTo = _mapper.Map<List<GetResidentDTO>>(residents);
                 if (residentDTo == null)
                 {
                     _logger.LogError($"Error while try to get Resident records");
@@ -52,19 +52,19 @@ namespace VisitorManagement.API.Controllers
             }
         }
         [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetResidentbyid(int id)
+        public async Task<IActionResult> GetResidentById(int id)
         {
             try
             {
-                _logger.LogInformation("Executing {Action} with id: {id}", nameof(GetResidentbyid), id);
-                var Residentbyid = await _residentService.GetResidentbyid(id);
-                if (Residentbyid == null)
+                _logger.LogInformation("Executing {Action} with id: {id}", nameof(GetResidentById), id);
+                var residentById = await _residentService.GetResidentById(id);
+                if (residentById == null)
                 {
                     _logger.LogError($"Error while try to get Resident by id record");
                     return NoContent();
 
                 }
-                var Residentiddto = _mapper.Map<List<GetResidentDTO>>(Residentbyid);
+                var Residentiddto = _mapper.Map<List<GetResidentDTO>>(residentById);
                 return Ok(Residentiddto);
             }
             catch(Exception)
@@ -74,17 +74,17 @@ namespace VisitorManagement.API.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> InsertResidentdetails([FromBody]CreateResidentDTO addresidentDetails)
+        public async Task<IActionResult> InsertResidentDetails([FromBody]CreateResidentDTO addResidentDetails)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
 
-                    _logger.LogInformation("Executing {Action}", nameof(InsertResidentdetails));
-                    var addresident = _mapper.Map<ResidentDetails>(addresidentDetails);
-                    await _residentService.CreateResident(addresident);
-                    return CreatedAtAction("InsertResidentdetails", new { id = addresident.ResidentId }, addresident);
+                    _logger.LogInformation("Executing {Action}", nameof(InsertResidentDetails));
+                    var addResident = _mapper.Map<ResidentDetails>(addResidentDetails);
+                    await _residentService.CreateResident(addResident);
+                    return CreatedAtAction("InsertResidentdetails", new { id = addResident.ResidentId }, addResident);
                 }
                 else
                 {
@@ -120,18 +120,18 @@ namespace VisitorManagement.API.Controllers
         }
         [HttpDelete]
         [Route("{id:int}")]
-        public async Task<IActionResult> DeleteResident(int id)
+        public async Task<IActionResult> DeleteResidentById(int id)
         {
             try
             {
-                _logger.LogInformation("Executing {Action} with id: {id}", nameof(DeleteResident), id);
+                _logger.LogInformation("Executing {Action} with id: {id}", nameof(DeleteResidentById), id);
                 if (id == 0)
                 {
                     return BadRequest();
                 }
-                var removeRDbyid = await _residentService.searchresident(id);
+                var removeById = await _residentService.FindResidentsInfo(id);
 
-                await _residentService.Deleteresident(removeRDbyid);
+                await _residentService.DeleteResident(removeById);
                 return NoContent();
             }
             catch(Exception)
@@ -140,23 +140,20 @@ namespace VisitorManagement.API.Controllers
                                 "Error DeleteResident data");
             }
         }
-
-
-
         //) Search resident by flat number or name (first name, last name or full name).
         [HttpGet("{search}")]
-        public async Task<ActionResult<IEnumerable<GetResidentDTO>>> Search(string FlatNumber, string FirstName, string LastName)
+        public async Task<ActionResult<IEnumerable<GetResidentDTO>>> SearchResidentDetails(string FlatNumber, string FirstName, string LastName)
         {
             try
             {
-                var result = await _residentService.Searchbyresident(FlatNumber, FirstName,LastName);
+                var result = await _residentService.SearchByDetails(FlatNumber, FirstName,LastName);
 
                 if (result.Any())
                 {
                     return Ok(result);
                 }
 
-
+                
                 return NotFound();
             }
             catch (Exception)
