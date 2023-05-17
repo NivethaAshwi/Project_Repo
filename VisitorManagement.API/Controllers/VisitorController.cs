@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -36,13 +36,13 @@ namespace VisitorManagement.API.Controllers
             {
                 _logger.LogInformation("Executing {Action}", nameof(GetVisitorDetails));
                 var visitor = await _visitorserRepo.GetAllVisitors();
-                var visitordto = _mapper.Map<List<GetVisitorDTO>>(visitor);
+                var visitorDto = _mapper.Map<List<GetVisitorDTO>>(visitor);
                 if (visitor == null)
                 {
                     _logger.LogError($"Error while try to get visitor details records");
                     return NoContent();
                 }
-                return Ok(visitordto);
+                return Ok(visitorDto);
             }
             catch(Exception)
             {
@@ -53,16 +53,16 @@ namespace VisitorManagement.API.Controllers
        
         
         [HttpPost]
-        public async Task<IActionResult> AddVisitordetails([FromBody] CreateVisitorDTO addvisitorRequest)
+        public async Task<IActionResult> AddVisitors([FromBody] CreateVisitorDTO addvisitorRequest)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _logger.LogInformation("Executing {Action}", nameof(AddVisitordetails));
-                    var addvisitor = _mapper.Map<Visitordetails>(addvisitorRequest);
-                    await _visitorserRepo.CreateVisitor(addvisitor);
-                    return CreatedAtAction("AddVisitordetails", new { id = addvisitor.VisitorId }, addvisitor);
+                    _logger.LogInformation("Executing {Action}", nameof(AddVisitors));
+                    var addVisitor = _mapper.Map<Visitordetails>(addvisitorRequest);
+                    await _visitorserRepo.CreateVisitor(addVisitor);
+                    return CreatedAtAction("AddVisitordetails", new { id = addVisitor.VisitorId }, addVisitor);
                 }
                 else
 
@@ -78,17 +78,17 @@ namespace VisitorManagement.API.Controllers
 
         }
         [HttpPut]
-      public async Task<IActionResult> UpdateVisitordetails( UpdateVisitorDTO updateContactRequest)
+      public async Task<IActionResult> UpdateVisitorsDetails( UpdateVisitorDTO updateVisitor)
         {
             try
             {
-                _logger.LogInformation("Executing {Action}", nameof(UpdateVisitordetails));
-                if (updateContactRequest == null)
+                _logger.LogInformation("Executing {Action}", nameof(UpdateVisitorsDetails));
+                if (updateVisitor == null)
                 {
                     return BadRequest();
                 }
-                var visitors = _mapper.Map<Visitordetails>(updateContactRequest);
-                await _visitorserRepo.Updatevisitor(visitors);
+                var visitors = _mapper.Map<Visitordetails>(updateVisitor);
+                await _visitorserRepo.UpdateVisitor(visitors);
                 return NoContent();
 
             }
@@ -100,17 +100,17 @@ namespace VisitorManagement.API.Controllers
         }
         [HttpDelete]
         [Route("{id:int}")]
-        public async Task<IActionResult> DeleteVisitordetails(int id)
+        public async Task<IActionResult> DeleteVisitorById(int id)
         {
             try
             {
-                _logger.LogInformation("Executing {Action} with id: {id}", nameof(DeleteVisitordetails), id);
+                _logger.LogInformation("Executing {Action} with id: {id}", nameof(DeleteVisitorById), id);
                 if (id == 0)
                 {
                     return BadRequest();
                 }
-                var contact = await _visitorserRepo.Fetchdata(id);
-                await _visitorserRepo.Deletevisitory(contact);
+                var visitors = await _visitorserRepo.FindVisitorById(id);
+                await _visitorserRepo.DeleteVisitor(visitors);
                 return NoContent();
             }
             catch (Exception)
@@ -121,11 +121,11 @@ namespace VisitorManagement.API.Controllers
 
         }
         [HttpGet("{search}")]
-        public async Task<ActionResult<IEnumerable<GetVisitorDTO>>> search(string MobileNumber,string VehicleNO)
+        public async Task<ActionResult<IEnumerable<GetVisitorDTO>>> SearchVisitors(string MobileNumber,string VehicleNO)
         {
             try
             {
-                var result = await _visitorserRepo.Searchbyvisitor(MobileNumber, VehicleNO);
+                var result = await _visitorserRepo.SearchByVisitorDetails(MobileNumber, VehicleNO);
 
                 if (result.Any())
                 {
