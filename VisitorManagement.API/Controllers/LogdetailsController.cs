@@ -76,7 +76,7 @@ namespace VisitorManagement.API.Controllers
                     _logger.LogInformation("Executing {Action} ", nameof(AddVisitorLogs));
                     var addLogs = _mapper.Map<VisitorLogsDetails>(addvisitorslog);
                     await _visitorLogRepo.CreateVisitorLog(addLogs);
-                    return CreatedAtAction("AddVisitorlogs", new { id = addLogs.VisitorLogId }, addLogs);
+                    return CreatedAtAction("AddVisitorLogs", new { id = addLogs.VisitorLogId }, addLogs);
                 }
                 else
                 {
