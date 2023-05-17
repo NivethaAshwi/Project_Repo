@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -31,11 +31,11 @@ namespace VisitorManagement.API.Controllers
             
         }
         [HttpGet]
-        public async Task<IActionResult> GetVisitorcategorydetails()
+        public async Task<IActionResult> GetVisitorCategory()
         {
             try
             {
-                _logger.LogInformation("Executing {Action}", nameof(GetVisitorCategorybyid));
+                _logger.LogInformation("Executing {Action}", nameof(GetVisitorCategory));
                 var categories = await _serviceRep.GetAllCategories();
                 var categoryDto = _mapper.Map<List<VisitorCategoryDTO>>(categories);
                 if (categories == null)
@@ -53,12 +53,12 @@ namespace VisitorManagement.API.Controllers
             }
         }
         [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetVisitorCategorybyid(int id)
+        public async Task<IActionResult> GetVisitorCategoryById(int id)
         {
             try
             {
-                _logger.LogInformation("Executing {Action} with id: {id}", nameof(GetVisitorCategorybyid), id);
-                var categories = await _serviceRep.GetCategorybyId(id);
+                _logger.LogInformation("Executing {Action} with id: {id}", nameof(GetVisitorCategoryById), id);
+                var categories = await _serviceRep.GetCategoryById(id);
                 if (categories == null)
                 {
                     _logger.LogError($"Error while try to get category record id:{id}");
@@ -75,17 +75,13 @@ namespace VisitorManagement.API.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> AddVisitorcategory([FromBody] CreateCategoryDTO addcategoryRequest)
+        public async Task<IActionResult> Addcategory([FromBody] CreateCategoryDTO addcategoryRequest)
         {
             try
             {
-                
-               
-
-                _logger.LogInformation("Executing {Action} ", nameof(AddVisitorcategory));
+                _logger.LogInformation("Executing {Action} ", nameof(Addcategory));
                 if (ModelState.IsValid)
                 {
-                   
                     var result = _serviceRep.IsCategoryNameExists(addcategoryRequest.CategoryName);
                     if (result)
                     {
@@ -110,18 +106,18 @@ namespace VisitorManagement.API.Controllers
 
         [HttpPut]
         
-        public async Task<IActionResult> UpdateCategorydetails(UpdateCategorDTO updateCategoryRequest)
+        public async Task<IActionResult> UpdateCategory(UpdateCategorDTO categoryupdate)
         {
            
             try
             {
-                _logger.LogInformation("Executing {Action}", nameof(UpdateCategorydetails));
-                if (updateCategoryRequest == null)
+                _logger.LogInformation("Executing {Action}", nameof(UpdateCategory));
+                if (categoryupdate == null)
                 {
                     _logger.LogError($"Error while try to update category record");
                     return BadRequest();
                 }
-                var category = _mapper.Map<VisitorCategoryDetails>(updateCategoryRequest);
+                var category = _mapper.Map<VisitorCategoryDetails>(categoryupdate);
                 await _serviceRep.UpdateCategory(category);
                 return NoContent();
             }
@@ -133,17 +129,17 @@ namespace VisitorManagement.API.Controllers
         }
         [HttpDelete]
         [Route("{id:int}")]
-        public async Task<IActionResult> DeleteCategorydetails(int id)
+        public async Task<IActionResult> DeleteCategoryById(int id)
         {
             try
             {
-                _logger.LogInformation("Executing {Action} with id: {id}", nameof(DeleteCategorydetails), id);
+                _logger.LogInformation("Executing {Action} with id: {id}", nameof(DeleteCategoryById), id);
                 if (id == 0)
                 {
                     _logger.LogError($"Error while try to delete category record list");
                     return BadRequest();
                 }
-                var categoryDetails = await _serviceRep.finddata(id);
+                var categoryDetails = await _serviceRep.FindCategoriesById(id);
 
                 await _serviceRep.DeleteCategory(categoryDetails);
                 return NoContent();
