@@ -62,7 +62,7 @@ namespace VisitorManagement.API.Controllers
                     _logger.LogInformation("Executing {Action}", nameof(AddVisitors));
                     var addVisitor = _mapper.Map<Visitordetails>(addvisitorRequest);
                     await _visitorserRepo.CreateVisitor(addVisitor);
-                    return CreatedAtAction("AddVisitordetails", new { id = addVisitor.VisitorId }, addVisitor);
+                    return CreatedAtAction("AddVisitors", new { id = addVisitor.VisitorId }, addVisitor);
                 }
                 else
 
