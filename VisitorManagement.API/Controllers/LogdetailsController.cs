@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using VisitorManagement.API.DTO.CategoryDTO;
@@ -22,19 +22,19 @@ namespace VisitorManagement.API.Controllers
 
         }
         [HttpGet]
-        public async Task<IActionResult>GetVisitorLogdetails()
+        public async Task<IActionResult>GetVisitorLogs()
         {
             try
             {
-                _logger.LogInformation("Executing {Action}", nameof(GetVisitorLogdetails));
-                var visitorlogs = await _visitorLogRepo.GetAllVisitorLogs();
-                var visitorlogdto = _mapper.Map<List<GetLogsDTO>>(visitorlogs);
-                if (visitorlogdto == null)
+                _logger.LogInformation("Executing {Action}", nameof(GetVisitorLogs));
+                var visitorLog = await _visitorLogRepo.GetAllVisitorLogs();
+                var visitorLogDto = _mapper.Map<List<GetLogsDTO>>(visitorLog);
+                if (visitorLogDto == null)
                 {
                     _logger.LogError($"Error while try to get VisitorLog records");
                     return NoContent();
                 }
-                return Ok(visitorlogdto);
+                return Ok(visitorLogDto);
             }
             catch(Exception)
             {
@@ -43,20 +43,20 @@ namespace VisitorManagement.API.Controllers
             }
         }
         [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetVisitorlogbyId(int id)
+        public async Task<IActionResult> GetVisitorLogById(int id)
         {
             try
             {
-                _logger.LogInformation("Executing {Action} with id: {id}", nameof(GetVisitorlogbyId), id);
-                var visitorlogbyid = await _visitorLogRepo.GetVisitorlogbyid(id);
-                if (visitorlogbyid == null)
+                _logger.LogInformation("Executing {Action} with id: {id}", nameof(GetVisitorLogById), id);
+                var visitorLogById = await _visitorLogRepo.GetVisitorlogbyid(id);
+                if (visitorLogById == null)
                 {
                     _logger.LogError($"Error while try to get visitorlog by id record");
                     return NoContent();
 
                 }
-                var visitorlogdsto = _mapper.Map<GetLogsDTO>(visitorlogbyid);
-                return Ok(visitorlogdsto);
+                var visitorLogDto = _mapper.Map<GetLogsDTO>(visitorLogById);
+                return Ok(visitorLogDto);
             }
             catch(Exception)
             {
@@ -65,7 +65,7 @@ namespace VisitorManagement.API.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> AddVisitorlogs([FromBody] CreateLogDTO addvisitorslog)
+        public async Task<IActionResult> AddVisitorLogs([FromBody] CreateLogDTO addvisitorslog)
         {
             try
             {
@@ -73,10 +73,10 @@ namespace VisitorManagement.API.Controllers
                 {
 
 
-                    _logger.LogInformation("Executing {Action} ", nameof(AddVisitorlogs));
-                    var Addlogs = _mapper.Map<VisitorLogsDetails>(addvisitorslog);
-                    await _visitorLogRepo.CreateVisitorlog(Addlogs);
-                    return CreatedAtAction("AddVisitorlogs", new { id = Addlogs.VisitorLogId }, Addlogs);
+                    _logger.LogInformation("Executing {Action} ", nameof(AddVisitorLogs));
+                    var addLogs = _mapper.Map<VisitorLogsDetails>(addvisitorslog);
+                    await _visitorLogRepo.CreateVisitorlog(addLogs);
+                    return CreatedAtAction("AddVisitorlogs", new { id = addLogs.VisitorLogId }, addLogs);
                 }
                 else
                 {
@@ -91,16 +91,16 @@ namespace VisitorManagement.API.Controllers
         }
         [HttpPut]
 
-        public async Task<IActionResult> UpdateVisitorlogdetails(UpdateDTO updatelogRequest)
+        public async Task<IActionResult> UpdateVisitorLog(UpdateDTO updatelog)
         {
             try
             {
-                _logger.LogInformation("Executing {Action} ", nameof(UpdateVisitorlogdetails));
-                if (updatelogRequest == null)
+                _logger.LogInformation("Executing {Action} ", nameof(UpdateVisitorLog));
+                if (updatelog == null)
                 {
                     return BadRequest();
                 }
-                var updatelogs = _mapper.Map<VisitorLogsDetails>(updatelogRequest);
+                var updatelogs = _mapper.Map<VisitorLogsDetails>(updatelog);
                 await _visitorLogRepo.Updatevisitorlog(updatelogs);
                 return NoContent();
             }
@@ -121,9 +121,8 @@ namespace VisitorManagement.API.Controllers
                 {
                     return BadRequest();
                 }
-                var dellogbyid = await _visitorLogRepo.GetVisitorlogbyid(id);
-                await _visitorLogRepo.Deletevisitorylog(dellogbyid
-                    );
+                var logById = await _visitorLogRepo.GetVisitorlogbyid(id);
+                await _visitorLogRepo.Deletevisitorylog(logById);
                 return NoContent();
             }
             catch (Exception)
