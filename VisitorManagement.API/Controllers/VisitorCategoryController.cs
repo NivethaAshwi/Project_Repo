@@ -89,7 +89,7 @@ namespace VisitorManagement.API.Controllers
                     }
                     var category = _mapper.Map<VisitorCategoryDetails>(addcategoryRequest);
                     await _serviceRep.CreateCategory(category);//instead of hardcoding  we can do automapper like this
-                    return CreatedAtAction("AddVisitorcategory", new { id = category.VisitorCategoryId }, category);
+                    return CreatedAtAction("Addcategory", new { id = category.VisitorCategoryId }, category);
                 }
                 else
                 {
