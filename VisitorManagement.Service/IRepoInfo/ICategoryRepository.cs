@@ -11,7 +11,7 @@ using VisitorManagement.Models;
 namespace VisitorManagement.Service.IRepoInfo
 {
     #region Visitor Category Details
-    public interface ICategoryRepo
+    public interface ICategoryRepository
     {
         Task<List<VisitorCategoryDetails>> GetAllCategories();
         Task <List<VisitorCategoryDetails>> GetCategoryById(int id);
@@ -19,28 +19,28 @@ namespace VisitorManagement.Service.IRepoInfo
         Task UpdateCategory(VisitorCategoryDetails categoryDetails);
         Task DeleteCategory(VisitorCategoryDetails visitorCategory);
         Task <VisitorCategoryDetails> FindCategoriesById(int id);
-        Task save();
+        Task Save();
         bool IsCategoryNameExists(string name);
 
 
     }
     #endregion
     #region Visistor details
-    public interface IVisitorRepo
+    public interface IVisitorRepository
     {
-        Task<List<Visitordetails>> GetAllVisitors();
-        Task  <List<Visitordetails>> GetVisitorById(int id);
-        Task CreateVisitor(Visitordetails visitors);
-        Task UpdateVisitor(Visitordetails visitordetails);
-        Task DeleteVisitor(Visitordetails visitordetails);
-        Task<IEnumerable<Visitordetails>> SearchByVisitorDetails(string Mobileno, string vehicleno);
-        Task<Visitordetails> FindVisitorById(int id);
+        Task<List<VisitorDetails>> GetAllVisitors();
+        Task  <List<VisitorDetails>> GetVisitorById(int id);
+        Task CreateVisitor(VisitorDetails visitors);
+        Task UpdateVisitor(VisitorDetails visitordetails);
+        Task DeleteVisitor(VisitorDetails visitordetails);
+        Task<IEnumerable<VisitorDetails>> SearchByVisitorDetails(string Mobileno, string vehicleno);
+        Task<VisitorDetails> FindVisitorById(int id);
 
-        Task save();
+        Task Save();
     }
     #endregion
     #region Resident details
-    public interface  IResidentRenpo
+    public interface IResidentRepository
     {
         Task<IEnumerable<ResidentDetails>> SearchByDetails(string FlatID,string FN,string LN);
         Task<List<ResidentDetails>> GetAllResident();
@@ -50,11 +50,11 @@ namespace VisitorManagement.Service.IRepoInfo
         Task DeleteResident(ResidentDetails visitordetails);
         Task<ResidentDetails> FindResidentsInfo(int id);
         
-        Task save();
+        Task Save();
     }
     #endregion
     #region Visitor Log
-    public interface IVisitorLogRepo
+    public interface IVisitorLogRepository
     {
         Task<List<VisitorLogsDetails>> GetAllVisitorLogs();
         Task<VisitorLogsDetails> GetVisitorLogById(int id);
@@ -62,7 +62,7 @@ namespace VisitorManagement.Service.IRepoInfo
         Task UpdateVisitorLog(VisitorLogsDetails visitordetails);
         Task DeleteVisitoryLog(VisitorLogsDetails visitordetails);
 
-        Task save();
+        Task Save();
     }
     #endregion
 
