@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,51 +10,51 @@ using VisitorManagement.Service.IRepoInfo;
 
 namespace VisitorManagement.Service.service
 {
-    public class VisitorLogService : IVisitorLogRepo
-     
+    public class VisitorLogService : IVisitorLogRepository
+
     {
-        private readonly VisitorCategoryDBContext _dbforVLdetails; //VL - Visitor Logs
+        private readonly VisitorCategoryDBContext _visitorLogDbContext;
         public VisitorLogService(VisitorCategoryDBContext dBContext)
         {
-            _dbforVLdetails = dBContext;
+            _visitorLogDbContext = dBContext;
         }
         public async Task CreateVisitorLog(VisitorLogsDetails visitors)
         {
            
-            await _dbforVLdetails.LogDetails.AddAsync(visitors);
+            await _visitorLogDbContext.LogDetails.AddAsync(visitors);
             
-            await save();
+            await Save();
         }
 
         public async Task DeleteVisitoryLog(VisitorLogsDetails visitordetails)
         {
-            _dbforVLdetails.LogDetails.Remove(visitordetails);
-            await save();
+            _visitorLogDbContext.LogDetails.Remove(visitordetails);
+            await Save();
         }
 
         public async Task<List<VisitorLogsDetails>> GetAllVisitorLogs()
         {
-            var visitorLogs =   _dbforVLdetails.LogDetails.ToList();
+            var visitorLogs = await _visitorLogDbContext.LogDetails.ToListAsync();
             return visitorLogs;
 
         }
 
         public async Task<VisitorLogsDetails> GetVisitorLogById(int id)
         {
-            var visitorLogs = await _dbforVLdetails.LogDetails.FindAsync(id);
+            var visitorLogs = await _visitorLogDbContext.LogDetails.FindAsync(id);
             return visitorLogs;
         }
 
-        public async Task save()
+        public async Task Save()
         {
-            await _dbforVLdetails.SaveChangesAsync();
+            await _visitorLogDbContext.SaveChangesAsync();
             
         }
 
         public async Task UpdateVisitorLog(VisitorLogsDetails visitordetails)
         {
-             _dbforVLdetails.LogDetails.Update(visitordetails);
-            await save();
+            _visitorLogDbContext.LogDetails.Update(visitordetails);
+            await Save();
         }
     }
 }
