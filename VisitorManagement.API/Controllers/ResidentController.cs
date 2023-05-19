@@ -11,6 +11,7 @@ using VisitorManagement.Service.IRepoInfo;
 using VisitorManagement.API.DTO.CategoryDTO;
 using VisitorManagement.API.DTO;
 using System.Text.Json;
+using VisitorManagement.API.InputModels;
 
 namespace VisitorManagement.API.Controllers
 {
@@ -19,16 +20,20 @@ namespace VisitorManagement.API.Controllers
     public class ResidentController : ControllerBase
     {
         
-        private readonly IResidentRenpo _residentService;
+        private readonly IResidentRepository _residentService;
         private readonly IMapper _mapper;
         private readonly ILogger<VisitorCategoryController> _logger;
-        public ResidentController(IResidentRenpo resident,IMapper mapper,ILogger<VisitorCategoryController> logger)
+        private readonly IPaginationServices<CreateResidentDTO, ResidentDetails> _residentsPagination;
+        public ResidentController(IResidentRepository resident,IMapper mapper,ILogger<VisitorCategoryController> logger,IPaginationServices<CreateResidentDTO,ResidentDetails> pagination)
         {
             _residentService = resident;
             _mapper = mapper;
             _logger = logger ;
+            _residentsPagination = pagination;
 
         }
+
+        #region GetAll Resident Details
         [HttpGet]
         public async Task<IActionResult> GetResident()
         {
@@ -51,6 +56,9 @@ namespace VisitorManagement.API.Controllers
                                     "Error retrieving data from the database");
             }
         }
+        #endregion
+
+        # region Get Resident details by ID
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetResidentById(int id)
         {
@@ -73,6 +81,9 @@ namespace VisitorManagement.API.Controllers
                     "Error retrieving data from the database based on Id");
             }
         }
+        #endregion
+
+        #region Create New resident
         [HttpPost]
         public async Task<IActionResult> InsertResidentDetails([FromBody]CreateResidentDTO addResidentDetails)
         {
@@ -98,6 +109,9 @@ namespace VisitorManagement.API.Controllers
                "Error creating new Residentrecord record");
             }
         }
+        #endregion
+
+        #region Update Existing Resident Details
         [HttpPut]
         public async Task<IActionResult> UpdateResident(UpdateResidentDTO updateResidentRequest)
         {
@@ -118,6 +132,9 @@ namespace VisitorManagement.API.Controllers
                 "Error updating restident details data");
             }
         }
+        #endregion
+
+        #region Delete Resident by Id
         [HttpDelete]
         [Route("{id:int}")]
         public async Task<IActionResult> DeleteResidentById(int id)
@@ -140,7 +157,9 @@ namespace VisitorManagement.API.Controllers
                                 "Error DeleteResident data");
             }
         }
-        //) Search resident by flat number or name (first name, last name or full name).
+        #endregion
+
+        #region Search resident by flat number or name (first name, last name or full name).
         [HttpGet("{search}")]
         public async Task<ActionResult<IEnumerable<GetResidentDTO>>> SearchResidentDetails(string FlatNumber, string FirstName, string LastName)
         {
@@ -152,6 +171,8 @@ namespace VisitorManagement.API.Controllers
                 {
                     return Ok(result);
                 }
+
+                
                 return NotFound();
             }
             catch (Exception)
@@ -160,6 +181,20 @@ namespace VisitorManagement.API.Controllers
                     "Error retrieving data from the database");
             }
         }
+        #endregion
+
+        #region Pagination for Resident details
+
+        [HttpPost]
+        [Route("GetPaginationforResident")]
+        public async Task<ActionResult> PaginationForResident([FromBody] PaginationInput paginationInput)
+        {
+            var residentDetails = await _residentService.GetAllResident();
+            var result = _residentsPagination.GetPagination(residentDetails, paginationInput);
+            return Ok(result);
+            
+        }
+        #endregion
 
     }
 
