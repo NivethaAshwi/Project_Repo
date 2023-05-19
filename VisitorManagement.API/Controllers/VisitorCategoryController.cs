@@ -13,6 +13,7 @@ using VisitorManagement.API.DTO.CategoryDTO;
 using VisitorManagement.Service.service;
 using VisitorManagement.Service.IRepoInfo;
 using System.Text.Json;
+using VisitorManagement.API.InputModels;
 
 namespace VisitorManagement.API.Controllers
 {
@@ -20,23 +21,26 @@ namespace VisitorManagement.API.Controllers
     [ApiController]
     public class VisitorCategoryController : ControllerBase
     {
-        private readonly ICategoryRepo _serviceRep;
+        private readonly ICategoryRepository _categoryService;
         private readonly IMapper _mapper;
         private readonly ILogger<VisitorCategoryController> _logger;
-        public VisitorCategoryController(ICategoryRepo categoryRepo, IMapper mapper,ILogger<VisitorCategoryController> logger)
+        private readonly IPaginationServices<CreateCategoryDTO, VisitorCategoryDetails> _paginationService;
+        public VisitorCategoryController(ICategoryRepository categoryRepo, IMapper mapper,ILogger<VisitorCategoryController> logger,IPaginationServices<CreateCategoryDTO,VisitorCategoryDetails> paginationServices)
         {
-            _serviceRep = categoryRepo;
+            _categoryService = categoryRepo;
             _mapper = mapper;
             _logger = logger;
+            _paginationService = paginationServices;
             
         }
+        #region GetAll Visitor Category Details
         [HttpGet]
         public async Task<IActionResult> GetVisitorCategory()
         {
             try
             {
                 _logger.LogInformation("Executing {Action}", nameof(GetVisitorCategory));
-                var categories = await _serviceRep.GetAllCategories();
+                var categories = await _categoryService.GetAllCategories();
                 var categoryDto = _mapper.Map<List<VisitorCategoryDTO>>(categories);
                 if (categories == null)
                 {
@@ -52,13 +56,16 @@ namespace VisitorManagement.API.Controllers
                                     "Error retrieving categorydetails data from the database");
             }
         }
+        #endregion
+
+        #region Get Visitor Category details by Id
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetVisitorCategoryById(int id)
         {
             try
             {
                 _logger.LogInformation("Executing {Action} with id: {id}", nameof(GetVisitorCategoryById), id);
-                var categories = await _serviceRep.GetCategoryById(id);
+                var categories = await _categoryService.GetCategoryById(id);
                 if (categories == null)
                 {
                     _logger.LogError($"Error while try to get category record id:{id}");
@@ -74,6 +81,9 @@ namespace VisitorManagement.API.Controllers
                   "Error retrieving data from VisitorCategory based on Id");
             }
         }
+        #endregion
+
+        #region Create new Visitor Category
         [HttpPost]
         public async Task<IActionResult> Addcategory([FromBody] CreateCategoryDTO addcategoryRequest)
         {
@@ -82,13 +92,13 @@ namespace VisitorManagement.API.Controllers
                 _logger.LogInformation("Executing {Action} ", nameof(Addcategory));
                 if (ModelState.IsValid)
                 {
-                    var result = _serviceRep.IsCategoryNameExists(addcategoryRequest.CategoryName);
+                    var result = _categoryService.IsCategoryNameExists(addcategoryRequest.CategoryName);
                     if (result)
                     {
                         return Conflict("Category Name already exists");
                     }
                     var category = _mapper.Map<VisitorCategoryDetails>(addcategoryRequest);
-                    await _serviceRep.CreateCategory(category);//instead of hardcoding  we can do automapper like this
+                    await _categoryService.CreateCategory(category);//instead of hardcoding  we can do automapper like this
                     return CreatedAtAction("Addcategory", new { id = category.VisitorCategoryId }, category);
                 }
                 else
@@ -99,13 +109,14 @@ namespace VisitorManagement.API.Controllers
             catch(Exception)
               {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-           "Error creating new visitorcategory record record");
+           "Error creating new visitorcategory record");
               }
 
         }
+        #endregion
 
+        #region Update Existing Visitor Category
         [HttpPut]
-        
         public async Task<IActionResult> UpdateCategory(UpdateCategorDTO categoryupdate)
         {
            
@@ -118,7 +129,7 @@ namespace VisitorManagement.API.Controllers
                     return BadRequest();
                 }
                 var category = _mapper.Map<VisitorCategoryDetails>(categoryupdate);
-                await _serviceRep.UpdateCategory(category);
+                await _categoryService.UpdateCategory(category);
                 return NoContent();
             }
             catch(Exception)
@@ -127,6 +138,9 @@ namespace VisitorManagement.API.Controllers
                 "Error updating category details data");
             }
         }
+        #endregion
+
+        #region Delete Visitor Category By Id
         [HttpDelete]
         [Route("{id:int}")]
         public async Task<IActionResult> DeleteCategoryById(int id)
@@ -139,9 +153,9 @@ namespace VisitorManagement.API.Controllers
                     _logger.LogError($"Error while try to delete category record list");
                     return BadRequest();
                 }
-                var categoryDetails = await _serviceRep.FindCategoriesById(id);
+                var categoryDetails = await _categoryService.FindCategoriesById(id);
 
-                await _serviceRep.DeleteCategory(categoryDetails);
+                await _categoryService.DeleteCategory(categoryDetails);
                 return NoContent();
             }
             catch(Exception)
@@ -150,6 +164,18 @@ namespace VisitorManagement.API.Controllers
                                 "Error DeleteCategorydetails data");
             }
         }
+        #endregion
+
+        #region Pagination for Visitor Category
+        [HttpPost]
+        [Route("GetPagination")]
+        public async Task<ActionResult> GetPaginationDetailsforCategory([FromBody]PaginationInput paginationInput)
+        {
+            var category = await _categoryService.GetAllCategories();
+            var result = _paginationService.GetPagination(category,paginationInput);
+            return Ok(result);
+        }
+        #endregion
     }
 }
 
