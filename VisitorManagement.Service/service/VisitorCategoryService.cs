@@ -11,58 +11,60 @@ using VisitorManagement.Service.IRepoInfo;
 
 namespace VisitorManagement.Service.service
 {
-    public class VisitorCategoryService : ICategoryRepo
+    public class VisitorCategoryService : ICategoryRepository
     {
-        private readonly VisitorCategoryDBContext _DBforCDcontext; //CD - Categorydetails
+        private readonly VisitorCategoryDBContext _categoryDbContext;
         public VisitorCategoryService(VisitorCategoryDBContext dbcontext)
         {
-            _DBforCDcontext = dbcontext;
+            _categoryDbContext = dbcontext;
         }
         public async Task CreateCategory(VisitorCategoryDetails category)
         {
             
-            await _DBforCDcontext.VisitorCategoryDetail.AddAsync(category);
-            await save();
+            await _categoryDbContext.VisitorCategoryDetail.AddAsync(category);
+            await Save();
 
         }
         public async Task DeleteCategory(VisitorCategoryDetails visitorCategory)
         {
-            _DBforCDcontext.VisitorCategoryDetail.Remove(visitorCategory);
-            await save();
+            _categoryDbContext.VisitorCategoryDetail.Remove(visitorCategory);
+            await Save();
         }
         public async Task<VisitorCategoryDetails> FindCategoriesById(int id)
         {
-            var categoryDetails = await _DBforCDcontext.VisitorCategoryDetail.FindAsync(id);
+            var categoryDetails = await _categoryDbContext.VisitorCategoryDetail.FindAsync(id);
             return categoryDetails;
         }
         public async Task<List<VisitorCategoryDetails>> GetAllCategories()
         {
-            var categories = await _DBforCDcontext.VisitorCategoryDetail.Include(visitor => visitor.Visitordetails).ToListAsync(); 
+            var categories = await _categoryDbContext.VisitorCategoryDetail.ToListAsync();
             return categories;
+            //var categories = await _DBforCDcontext.VisitorCategoryDetail.Include(visitor => visitor.Visitordetails).ToListAsync(); 
+            //return categories;
         }
 
         public async Task<List<VisitorCategoryDetails>> GetCategoryById(int id)
         {
-            var category = await _DBforCDcontext.VisitorCategoryDetail.Where(a => a.VisitorCategoryId == id).Include(visitor => visitor.Visitordetails).ToListAsync();
+            var category = await _categoryDbContext.VisitorCategoryDetail.Where(a => a.VisitorCategoryId == id).Include(visitor => visitor.Visitordetails).ToListAsync();
             return category;
         }
 
         public bool IsCategoryNameExists(string name)
         {
-            var result = _DBforCDcontext.VisitorCategoryDetail.Where(x => x.CategoryName.ToLower().Trim() == name.ToLower().Trim()).Any();
+            var result = _categoryDbContext.VisitorCategoryDetail.Where(x => x.CategoryName.ToLower().Trim() == name.ToLower().Trim()).Any();
             return result;
         }
 
-        public async Task save()            
+        public async Task Save()            
 
         {
-            await _DBforCDcontext.SaveChangesAsync();
+            await _categoryDbContext.SaveChangesAsync();
         }
 
         public async Task UpdateCategory(VisitorCategoryDetails categoryDetails)
         {
-            _DBforCDcontext.VisitorCategoryDetail.Update(categoryDetails);
-            await save(); 
+            _categoryDbContext.VisitorCategoryDetail.Update(categoryDetails);
+            await Save(); 
         }
     }
 }
