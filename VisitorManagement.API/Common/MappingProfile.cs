@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using VisitorManagement.API.DTO;
 using VisitorManagement.API.DTO.CategoryDTO;
 
@@ -17,10 +17,10 @@ namespace VisitorManagement.API.Common
             CreateMap<VisitorCategoryDetails, UpdateCategorDTO>().ReverseMap();
 
             //visitor
-            CreateMap<Visitordetails, GetVisitorDTO>().ReverseMap(); //Vice versa 
-            CreateMap<Visitordetails, CreateVisitorDTO>().ReverseMap();
-            CreateMap<Visitordetails, UpdateVisitorDTO>().ReverseMap();
-            CreateMap<Visitordetails, GetcategoryVisitorDTO>().ReverseMap();
+            CreateMap<VisitorDetails, GetVisitorDTO>().ReverseMap(); //Vice versa 
+            CreateMap<VisitorDetails, CreateVisitorDTO>().ReverseMap();
+            CreateMap<VisitorDetails, UpdateVisitorDTO>().ReverseMap();
+            CreateMap<VisitorDetails, GetcategoryVisitorDTO>().ReverseMap();
             //Resident
             CreateMap<ResidentDetails, CreateResidentDTO>().ReverseMap();
             CreateMap<ResidentDetails, GetResidentDTO>().ReverseMap();
