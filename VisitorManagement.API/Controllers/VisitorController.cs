@@ -2,10 +2,11 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Net.WebSockets;
 using System.Text.Json;
 using VisitorManagement.API.DTO;
 using VisitorManagement.API.DTO.CategoryDTO;
-
+using VisitorManagement.API.InputModels;
 using VisitorManagement.DataAccess;
 using VisitorManagement.Models;
 using VisitorManagement.Service.IRepoInfo;
@@ -17,25 +18,27 @@ namespace VisitorManagement.API.Controllers
     public class VisitorController : ControllerBase
     {
         //private readonly VisitorCategoryDBContext _Dbcontext;
-      
-        private readonly IVisitorRepo _visitorserRepo;
+
+        private readonly IVisitorRepository _visitorService;
         private readonly IMapper _mapper;
         private readonly ILogger<VisitorController> _logger;
+        private readonly IPaginationServices<CreateVisitorDTO, VisitorDetails> _paginationServices;
 
-        public VisitorController(IVisitorRepo visitorRepo,IMapper mapper,ILogger<VisitorController> logger)
+        public VisitorController(IVisitorRepository visitorRepo, IMapper mapper, ILogger<VisitorController> logger, IPaginationServices<CreateVisitorDTO, VisitorDetails> paginationServices)
         {
-            _visitorserRepo = visitorRepo;
+            _visitorService = visitorRepo;
             _mapper = mapper;
             _logger = logger;
+            _paginationServices = paginationServices;
         }
-       
+
         [HttpGet]
         public async Task<IActionResult> GetVisitorDetails()
         {
             try
             {
                 _logger.LogInformation("Executing {Action}", nameof(GetVisitorDetails));
-                var visitor = await _visitorserRepo.GetAllVisitors();
+                var visitor = await _visitorService.GetAllVisitors();
                 var visitorDto = _mapper.Map<List<GetVisitorDTO>>(visitor);
                 if (visitor == null)
                 {
@@ -44,14 +47,14 @@ namespace VisitorManagement.API.Controllers
                 }
                 return Ok(visitorDto);
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
                                     "Error retrieving data from the database");
             }
         }
-       
-        
+
+
         [HttpPost]
         public async Task<IActionResult> AddVisitors([FromBody] CreateVisitorDTO addvisitorRequest)
         {
@@ -60,8 +63,8 @@ namespace VisitorManagement.API.Controllers
                 if (ModelState.IsValid)
                 {
                     _logger.LogInformation("Executing {Action}", nameof(AddVisitors));
-                    var addVisitor = _mapper.Map<Visitordetails>(addvisitorRequest);
-                    await _visitorserRepo.CreateVisitor(addVisitor);
+                    var addVisitor = _mapper.Map<VisitorDetails>(addvisitorRequest);
+                    await _visitorService.CreateVisitor(addVisitor);
                     return CreatedAtAction("AddVisitors", new { id = addVisitor.VisitorId }, addVisitor);
                 }
                 else
@@ -78,7 +81,7 @@ namespace VisitorManagement.API.Controllers
 
         }
         [HttpPut]
-      public async Task<IActionResult> UpdateVisitorsDetails( UpdateVisitorDTO updateVisitor)
+        public async Task<IActionResult> UpdateVisitorsDetails(UpdateVisitorDTO updateVisitor)
         {
             try
             {
@@ -87,8 +90,8 @@ namespace VisitorManagement.API.Controllers
                 {
                     return BadRequest();
                 }
-                var visitors = _mapper.Map<Visitordetails>(updateVisitor);
-                await _visitorserRepo.UpdateVisitor(visitors);
+                var visitors = _mapper.Map<VisitorDetails>(updateVisitor);
+                await _visitorService.UpdateVisitor(visitors);
                 return NoContent();
 
             }
@@ -109,8 +112,8 @@ namespace VisitorManagement.API.Controllers
                 {
                     return BadRequest();
                 }
-                var visitors = await _visitorserRepo.FindVisitorById(id);
-                await _visitorserRepo.DeleteVisitor(visitors);
+                var visitors = await _visitorService.FindVisitorById(id);
+                await _visitorService.DeleteVisitor(visitors);
                 return NoContent();
             }
             catch (Exception)
@@ -121,11 +124,11 @@ namespace VisitorManagement.API.Controllers
 
         }
         [HttpGet("{search}")]
-        public async Task<ActionResult<IEnumerable<GetVisitorDTO>>> SearchVisitors(string MobileNumber,string VehicleNO)
+        public async Task<ActionResult<IEnumerable<GetVisitorDTO>>> SearchVisitors(string MobileNumber, string VehicleNO)
         {
             try
             {
-                var result = await _visitorserRepo.SearchByVisitorDetails(MobileNumber, VehicleNO);
+                var result = await _visitorService.SearchByVisitorDetails(MobileNumber, VehicleNO);
 
                 if (result.Any())
                 {
@@ -139,5 +142,16 @@ namespace VisitorManagement.API.Controllers
                     "Error retrieving data from the database");
             }
         }
+        [HttpPost]
+        [Route("GetVisitordetailPagination")]
+        public async Task<ActionResult> GetPaginationDetailsforVisitors([FromBody]PaginationInput paginationInput)
+        {
+            var visitorDetails = await _visitorService.GetAllVisitors();
+            var result = _paginationServices.GetPagination(visitorDetails, paginationInput);
+            return Ok(result);
+
+
+        }
+      
     }
 }
