@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -39,6 +39,6 @@ namespace VisitorManagement.Models
         [ForeignKey("VisitorId")]
         public int VisitorId { get; set; }
         public ResidentDetails ResidentDetails { get; set; }
-        public Visitordetails visitordetails { get; set; }
+        public VisitorDetails visitordetails { get; set; }
     }
 }
