@@ -42,10 +42,13 @@ builder.Host.UseSerilog((context, config) =>
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 #endregion
 #region  // configure service and interfacerepo
-builder.Services.AddTransient<ICategoryRepo, VisitorCategoryService>();
-builder.Services.AddTransient<IVisitorRepo, VisitordetailService>();
-builder.Services.AddTransient<IResidentRenpo, ResidentdetailService>();
-builder.Services.AddTransient<IVisitorLogRepo, VisitorLogService>();
+builder.Services.AddTransient<ICategoryRepository, VisitorCategoryService>();
+builder.Services.AddTransient<IVisitorRepository, VisitorDetailService>();
+builder.Services.AddTransient<IResidentRepository, ResidentdetailService>();
+builder.Services.AddTransient<IVisitorLogRepository, VisitorLogService>();
+#endregion
+#region injecting Generic type for Pagination
+builder.Services.AddTransient(typeof(IPaginationServices<,>),typeof(PaginationServices<,>));
 #endregion
 
 
