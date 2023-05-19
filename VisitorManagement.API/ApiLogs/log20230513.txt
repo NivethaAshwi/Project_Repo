@@ -1,0 +1,35 @@
+2023-05-13 22:09:19.691 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2023-05-13 22:09:19.762 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/swagger - -
+2023-05-13 22:09:19.861 +05:30 [INF] Hosting environment: Development
+2023-05-13 22:09:19.861 +05:30 [INF] Content root path: C:\Users\Nivetha M\OneDrive\Desktop\Resumefolder\Latest_resume_March23\May_TEST\SocietyVisitorManagement\VisitorManagement.API\
+2023-05-13 22:09:20.651 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/swagger/index.html - -
+2023-05-13 22:09:20.683 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/swagger - - - 301 - - 945.4573ms
+2023-05-13 22:09:22.713 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/swagger/index.html - - - 200 - text/html;charset=utf-8 2059.5946ms
+2023-05-13 22:09:22.730 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/swagger/swagger-ui-bundle.js - -
+2023-05-13 22:09:22.731 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/swagger/swagger-ui-standalone-preset.js - -
+2023-05-13 22:09:22.733 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/swagger/swagger-ui.css - -
+2023-05-13 22:09:22.815 +05:30 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2023-05-13 22:09:22.815 +05:30 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2023-05-13 22:09:22.816 +05:30 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2023-05-13 22:09:22.830 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/swagger/swagger-ui.css - - - 200 143632 text/css 96.0538ms
+2023-05-13 22:09:22.842 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/swagger/swagger-ui-standalone-preset.js - - - 200 337162 application/javascript 110.9280ms
+2023-05-13 22:09:22.865 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/_framework/aspnetcore-browser-refresh.js - -
+2023-05-13 22:09:22.892 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/_framework/aspnetcore-browser-refresh.js - - - 200 12012 application/javascript;+charset=utf-8 22.5164ms
+2023-05-13 22:09:22.898 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/swagger/swagger-ui-bundle.js - - - 200 1092889 application/javascript 167.7479ms
+2023-05-13 22:09:22.899 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/_vs/browserLink - -
+2023-05-13 22:09:23.203 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 302.5125ms
+2023-05-13 22:09:23.539 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/swagger/v1/swagger.json - -
+2023-05-13 22:09:23.907 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 367.9324ms
+2023-05-13 22:10:01.469 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/api/VisitorCategory/145 - -
+2023-05-13 22:10:01.545 +05:30 [INF] Executing endpoint 'VisitorManagement.API.Controllers.VisitorCategoryController.GetVisitorCategorybyid (VisitorManagement.API)'
+2023-05-13 22:10:01.689 +05:30 [INF] Route matched with {action = "GetVisitorCategorybyid", controller = "VisitorCategory"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetVisitorCategorybyid(Int32) on controller VisitorManagement.API.Controllers.VisitorCategoryController (VisitorManagement.API).
+2023-05-13 22:10:18.516 +05:30 [INF] Executed DbCommand (1,016ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [v].[VisitorCategoryId], [v].[CategoryName], [v].[categoryDescription], [v0].[VisitorId], [v0].[MobileNo], [v0].[Reason], [v0].[VehicleNo], [v0].[VisitorCategoryId], [v0].[VisitorFirstName], [v0].[VisitorLastName]
+FROM [VisitorCategoryDetail] AS [v]
+LEFT JOIN [Visitordetails] AS [v0] ON [v].[VisitorCategoryId] = [v0].[VisitorCategoryId]
+WHERE [v].[VisitorCategoryId] = @__id_0
+ORDER BY [v].[VisitorCategoryId]
+2023-05-13 22:10:18.613 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[VisitorManagement.API.DTO.VisitorCategoryDTO, VisitorManagement.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-05-13 22:10:18.640 +05:30 [INF] Executed action VisitorManagement.API.Controllers.VisitorCategoryController.GetVisitorCategorybyid (VisitorManagement.API) in 16942.8001ms
+2023-05-13 22:10:18.643 +05:30 [INF] Executed endpoint 'VisitorManagement.API.Controllers.VisitorCategoryController.GetVisitorCategorybyid (VisitorManagement.API)'
+2023-05-13 22:10:18.675 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/api/VisitorCategory/145 - - - 200 - application/json;+charset=utf-8 17209.4964ms

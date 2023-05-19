@@ -1,0 +1,278 @@
+2023-05-14 11:55:29.767 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2023-05-14 11:55:29.799 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/swagger/index.html - -
+2023-05-14 11:55:29.830 +05:30 [INF] Hosting environment: Development
+2023-05-14 11:55:29.830 +05:30 [INF] Content root path: C:\Users\Nivetha M\OneDrive\Desktop\Resumefolder\Latest_resume_March23\May_TEST\SocietyVisitorManagement\VisitorManagement.API\
+2023-05-14 11:55:33.110 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/_framework/aspnetcore-browser-refresh.js - -
+2023-05-14 11:55:33.115 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/swagger/index.html - - - 200 - text/html;charset=utf-8 3320.4905ms
+2023-05-14 11:55:33.170 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/_framework/aspnetcore-browser-refresh.js - - - 200 12012 application/javascript;+charset=utf-8 42.9049ms
+2023-05-14 11:55:33.192 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/swagger/v1/swagger.json - -
+2023-05-14 11:55:33.452 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 259.6501ms
+2023-05-14 11:55:50.871 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/api/Resident - -
+2023-05-14 11:55:50.897 +05:30 [INF] Executing endpoint 'VisitorManagement.API.Controllers.ResidentController.GetResident (VisitorManagement.API)'
+2023-05-14 11:55:50.947 +05:30 [INF] Route matched with {action = "GetResident", controller = "Resident"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetResident() on controller VisitorManagement.API.Controllers.ResidentController (VisitorManagement.API).
+2023-05-14 11:55:59.204 +05:30 [INF] Executing GetResident
+2023-05-14 11:56:05.873 +05:30 [INF] Executed DbCommand (888ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ResidentId], [r].[FirstName], [r].[Flatnumber], [r].[LastName], [v].[VisitorLogId], [v].[EntryTime], [v].[ExitTime], [v].[ResidentId], [v].[SpentTime], [v].[VisitorId]
+FROM [ResidentDetails] AS [r]
+LEFT JOIN [VisitorLogsDetails] AS [v] ON [r].[ResidentId] = [v].[ResidentId]
+ORDER BY [r].[ResidentId]
+2023-05-14 11:56:23.478 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[VisitorManagement.API.DTO.CategoryDTO.GetResidentDTO, VisitorManagement.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-05-14 11:56:23.506 +05:30 [INF] Executed action VisitorManagement.API.Controllers.ResidentController.GetResident (VisitorManagement.API) in 32552.7533ms
+2023-05-14 11:56:23.507 +05:30 [INF] Executed endpoint 'VisitorManagement.API.Controllers.ResidentController.GetResident (VisitorManagement.API)'
+2023-05-14 11:56:23.527 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/api/Resident - - - 200 - application/json;+charset=utf-8 32655.6811ms
+2023-05-14 11:57:22.198 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/api/Resident/Nivetha?FN=Nivetha - -
+2023-05-14 11:57:22.204 +05:30 [INF] Executing endpoint 'VisitorManagement.API.Controllers.ResidentController.Search (VisitorManagement.API)'
+2023-05-14 11:57:22.227 +05:30 [INF] Route matched with {action = "Search", controller = "Resident"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[VisitorManagement.Models.ResidentDetails]]] Search(Int32, System.String, System.String) on controller VisitorManagement.API.Controllers.ResidentController (VisitorManagement.API).
+2023-05-14 11:57:22.755 +05:30 [INF] Executed DbCommand (328ms) [Parameters=[@__FN_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ResidentId], [r].[FirstName], [r].[Flatnumber], [r].[LastName]
+FROM [ResidentDetails] AS [r]
+WHERE ((@__FN_0 LIKE N'') OR CHARINDEX(@__FN_0, [r].[FirstName]) > 0) AND ((@__FN_0 LIKE N'') OR CHARINDEX(@__FN_0, [r].[FirstName]) > 0)
+2023-05-14 11:57:22.760 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[VisitorManagement.Models.ResidentDetails, VisitorManagement.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-05-14 11:57:22.765 +05:30 [INF] Executed action VisitorManagement.API.Controllers.ResidentController.Search (VisitorManagement.API) in 538.075ms
+2023-05-14 11:57:22.766 +05:30 [INF] Executed endpoint 'VisitorManagement.API.Controllers.ResidentController.Search (VisitorManagement.API)'
+2023-05-14 11:57:22.766 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/api/Resident/Nivetha?FN=Nivetha - - - 200 - application/json;+charset=utf-8 567.5823ms
+2023-05-14 12:02:04.062 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2023-05-14 12:02:04.098 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/swagger/index.html - -
+2023-05-14 12:02:04.128 +05:30 [INF] Hosting environment: Development
+2023-05-14 12:02:04.128 +05:30 [INF] Content root path: C:\Users\Nivetha M\OneDrive\Desktop\Resumefolder\Latest_resume_March23\May_TEST\SocietyVisitorManagement\VisitorManagement.API\
+2023-05-14 12:02:04.958 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/_framework/aspnetcore-browser-refresh.js - -
+2023-05-14 12:02:04.974 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/_vs/browserLink - -
+2023-05-14 12:02:04.976 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/swagger/index.html - - - 200 - text/html;charset=utf-8 885.5354ms
+2023-05-14 12:02:04.977 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/_framework/aspnetcore-browser-refresh.js - - - 200 12012 application/javascript;+charset=utf-8 10.6295ms
+2023-05-14 12:02:05.229 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 255.2806ms
+2023-05-14 12:02:05.277 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/swagger/v1/swagger.json - -
+2023-05-14 12:02:05.449 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 171.8432ms
+2023-05-14 12:03:10.337 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/api/Resident/Nivetha - -
+2023-05-14 12:03:10.383 +05:30 [INF] Executing endpoint 'VisitorManagement.API.Controllers.ResidentController.Search (VisitorManagement.API)'
+2023-05-14 12:03:10.439 +05:30 [INF] Route matched with {action = "Search", controller = "Resident"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[VisitorManagement.Models.ResidentDetails]]] Search(Int32, System.String, System.String) on controller VisitorManagement.API.Controllers.ResidentController (VisitorManagement.API).
+2023-05-14 12:03:14.418 +05:30 [INF] Executed DbCommand (158ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ResidentId], [r].[FirstName], [r].[Flatnumber], [r].[LastName]
+FROM [ResidentDetails] AS [r]
+2023-05-14 12:03:14.664 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[VisitorManagement.Models.ResidentDetails, VisitorManagement.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-05-14 12:03:14.714 +05:30 [INF] Executed action VisitorManagement.API.Controllers.ResidentController.Search (VisitorManagement.API) in 4265.6145ms
+2023-05-14 12:03:14.717 +05:30 [INF] Executed endpoint 'VisitorManagement.API.Controllers.ResidentController.Search (VisitorManagement.API)'
+2023-05-14 12:03:14.750 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/api/Resident/Nivetha - - - 200 - application/json;+charset=utf-8 4413.4232ms
+2023-05-14 12:03:30.972 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/api/Resident/Nivetha?FN=Nivetha - -
+2023-05-14 12:03:30.975 +05:30 [INF] Executing endpoint 'VisitorManagement.API.Controllers.ResidentController.Search (VisitorManagement.API)'
+2023-05-14 12:03:30.976 +05:30 [INF] Route matched with {action = "Search", controller = "Resident"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[VisitorManagement.Models.ResidentDetails]]] Search(Int32, System.String, System.String) on controller VisitorManagement.API.Controllers.ResidentController (VisitorManagement.API).
+2023-05-14 12:03:31.385 +05:30 [INF] Executed DbCommand (77ms) [Parameters=[@__FN_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ResidentId], [r].[FirstName], [r].[Flatnumber], [r].[LastName]
+FROM [ResidentDetails] AS [r]
+WHERE ((@__FN_0 LIKE N'') OR CHARINDEX(@__FN_0, [r].[FirstName]) > 0) AND ((@__FN_0 LIKE N'') OR CHARINDEX(@__FN_0, [r].[FirstName]) > 0)
+2023-05-14 12:03:31.389 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[VisitorManagement.Models.ResidentDetails, VisitorManagement.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-05-14 12:03:31.390 +05:30 [INF] Executed action VisitorManagement.API.Controllers.ResidentController.Search (VisitorManagement.API) in 413.119ms
+2023-05-14 12:03:31.390 +05:30 [INF] Executed endpoint 'VisitorManagement.API.Controllers.ResidentController.Search (VisitorManagement.API)'
+2023-05-14 12:03:31.390 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/api/Resident/Nivetha?FN=Nivetha - - - 200 - application/json;+charset=utf-8 418.2442ms
+2023-05-14 12:04:32.798 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2023-05-14 12:04:32.827 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/swagger/index.html - -
+2023-05-14 12:04:32.855 +05:30 [INF] Hosting environment: Development
+2023-05-14 12:04:32.855 +05:30 [INF] Content root path: C:\Users\Nivetha M\OneDrive\Desktop\Resumefolder\Latest_resume_March23\May_TEST\SocietyVisitorManagement\VisitorManagement.API\
+2023-05-14 12:04:33.569 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/_framework/aspnetcore-browser-refresh.js - -
+2023-05-14 12:04:33.577 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/_vs/browserLink - -
+2023-05-14 12:04:33.590 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/swagger/index.html - - - 200 - text/html;charset=utf-8 769.3956ms
+2023-05-14 12:04:33.593 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/_framework/aspnetcore-browser-refresh.js - - - 200 12012 application/javascript;+charset=utf-8 18.0456ms
+2023-05-14 12:04:33.682 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 105.1982ms
+2023-05-14 12:04:33.726 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/swagger/v1/swagger.json - -
+2023-05-14 12:04:33.854 +05:30 [ERR] An unhandled exception has occurred while executing the request.
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Conflicting method/path combination "GET api/Resident" for actions - VisitorManagement.API.Controllers.ResidentController.GetResident (VisitorManagement.API),VisitorManagement.API.Controllers.ResidentController.Search (VisitorManagement.API). Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwagger(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2023-05-14 12:04:33.935 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/swagger/v1/swagger.json - - - 500 - text/plain;+charset=utf-8 209.4749ms
+2023-05-14 12:06:08.848 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2023-05-14 12:06:08.887 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/swagger/index.html - -
+2023-05-14 12:06:08.913 +05:30 [INF] Hosting environment: Development
+2023-05-14 12:06:08.913 +05:30 [INF] Content root path: C:\Users\Nivetha M\OneDrive\Desktop\Resumefolder\Latest_resume_March23\May_TEST\SocietyVisitorManagement\VisitorManagement.API\
+2023-05-14 12:06:09.515 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/_framework/aspnetcore-browser-refresh.js - -
+2023-05-14 12:06:09.537 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/_vs/browserLink - -
+2023-05-14 12:06:09.540 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/swagger/index.html - - - 200 - text/html;charset=utf-8 662.0622ms
+2023-05-14 12:06:09.552 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/_framework/aspnetcore-browser-refresh.js - - - 200 12012 application/javascript;+charset=utf-8 26.1290ms
+2023-05-14 12:06:09.619 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 82.7750ms
+2023-05-14 12:06:09.685 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/swagger/v1/swagger.json - -
+2023-05-14 12:06:09.986 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 301.3465ms
+2023-05-14 12:06:55.444 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2023-05-14 12:06:55.467 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/swagger/index.html - -
+2023-05-14 12:06:55.499 +05:30 [INF] Hosting environment: Development
+2023-05-14 12:06:55.500 +05:30 [INF] Content root path: C:\Users\Nivetha M\OneDrive\Desktop\Resumefolder\Latest_resume_March23\May_TEST\SocietyVisitorManagement\VisitorManagement.API\
+2023-05-14 12:06:56.267 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/_framework/aspnetcore-browser-refresh.js - -
+2023-05-14 12:06:56.267 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/_vs/browserLink - -
+2023-05-14 12:06:56.276 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/swagger/index.html - - - 200 - text/html;charset=utf-8 815.9535ms
+2023-05-14 12:06:56.283 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/_framework/aspnetcore-browser-refresh.js - - - 200 12012 application/javascript;+charset=utf-8 7.4692ms
+2023-05-14 12:06:56.332 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 64.8163ms
+2023-05-14 12:06:56.383 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/swagger/v1/swagger.json - -
+2023-05-14 12:06:56.485 +05:30 [ERR] An unhandled exception has occurred while executing the request.
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Conflicting method/path combination "GET api/Resident" for actions - VisitorManagement.API.Controllers.ResidentController.GetResident (VisitorManagement.API),VisitorManagement.API.Controllers.ResidentController.Search (VisitorManagement.API). Actions require a unique method/path combination for Swagger/OpenAPI 3.0. Use ConflictingActionsResolver as a workaround
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwagger(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2023-05-14 12:06:56.527 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/swagger/v1/swagger.json - - - 500 - text/plain;+charset=utf-8 144.0049ms
+2023-05-14 12:08:36.172 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2023-05-14 12:08:36.211 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/swagger/index.html - -
+2023-05-14 12:08:36.233 +05:30 [INF] Hosting environment: Development
+2023-05-14 12:08:36.234 +05:30 [INF] Content root path: C:\Users\Nivetha M\OneDrive\Desktop\Resumefolder\Latest_resume_March23\May_TEST\SocietyVisitorManagement\VisitorManagement.API\
+2023-05-14 12:08:36.934 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/_vs/browserLink - -
+2023-05-14 12:08:36.934 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/_framework/aspnetcore-browser-refresh.js - -
+2023-05-14 12:08:36.963 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/swagger/index.html - - - 200 - text/html;charset=utf-8 759.5921ms
+2023-05-14 12:08:36.964 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/_framework/aspnetcore-browser-refresh.js - - - 200 12012 application/javascript;+charset=utf-8 16.2417ms
+2023-05-14 12:08:37.018 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 84.7734ms
+2023-05-14 12:08:37.065 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/swagger/v1/swagger.json - -
+2023-05-14 12:08:37.294 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 229.0817ms
+2023-05-14 12:09:26.205 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2023-05-14 12:09:26.231 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/swagger/index.html - -
+2023-05-14 12:09:26.265 +05:30 [INF] Hosting environment: Development
+2023-05-14 12:09:26.265 +05:30 [INF] Content root path: C:\Users\Nivetha M\OneDrive\Desktop\Resumefolder\Latest_resume_March23\May_TEST\SocietyVisitorManagement\VisitorManagement.API\
+2023-05-14 12:09:26.957 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/_framework/aspnetcore-browser-refresh.js - -
+2023-05-14 12:09:26.961 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/_vs/browserLink - -
+2023-05-14 12:09:26.969 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/swagger/index.html - - - 200 - text/html;charset=utf-8 745.8929ms
+2023-05-14 12:09:26.980 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/_framework/aspnetcore-browser-refresh.js - - - 200 12012 application/javascript;+charset=utf-8 19.6026ms
+2023-05-14 12:09:27.067 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 105.5309ms
+2023-05-14 12:09:27.110 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/swagger/v1/swagger.json - -
+2023-05-14 12:09:27.352 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 242.0938ms
+2023-05-14 12:10:34.487 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/api/Resident/Nive?FirstName=Nive - -
+2023-05-14 12:10:34.539 +05:30 [INF] Executing endpoint 'VisitorManagement.API.Controllers.ResidentController.Search (VisitorManagement.API)'
+2023-05-14 12:10:34.611 +05:30 [INF] Route matched with {action = "Search", controller = "Resident"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[VisitorManagement.Models.ResidentDetails]]] Search(Int32, System.String, System.String) on controller VisitorManagement.API.Controllers.ResidentController (VisitorManagement.API).
+2023-05-14 12:10:38.500 +05:30 [INF] Executed DbCommand (187ms) [Parameters=[@__FN_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ResidentId], [r].[FirstName], [r].[Flatnumber], [r].[LastName]
+FROM [ResidentDetails] AS [r]
+WHERE ((@__FN_0 LIKE N'') OR CHARINDEX(@__FN_0, [r].[FirstName]) > 0) AND ((@__FN_0 LIKE N'') OR CHARINDEX(@__FN_0, [r].[FirstName]) > 0)
+2023-05-14 12:10:38.702 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[VisitorManagement.Models.ResidentDetails, VisitorManagement.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-05-14 12:10:38.756 +05:30 [INF] Executed action VisitorManagement.API.Controllers.ResidentController.Search (VisitorManagement.API) in 4133.7381ms
+2023-05-14 12:10:38.758 +05:30 [INF] Executed endpoint 'VisitorManagement.API.Controllers.ResidentController.Search (VisitorManagement.API)'
+2023-05-14 12:10:38.786 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/api/Resident/Nive?FirstName=Nive - - - 200 - application/json;+charset=utf-8 4299.2246ms
+2023-05-14 12:11:00.348 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/api/Resident/ash?LastName=ash - -
+2023-05-14 12:11:00.355 +05:30 [INF] Executing endpoint 'VisitorManagement.API.Controllers.ResidentController.Search (VisitorManagement.API)'
+2023-05-14 12:11:00.356 +05:30 [INF] Route matched with {action = "Search", controller = "Resident"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[VisitorManagement.Models.ResidentDetails]]] Search(Int32, System.String, System.String) on controller VisitorManagement.API.Controllers.ResidentController (VisitorManagement.API).
+2023-05-14 12:11:00.424 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ResidentId], [r].[FirstName], [r].[Flatnumber], [r].[LastName]
+FROM [ResidentDetails] AS [r]
+2023-05-14 12:11:00.425 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[VisitorManagement.Models.ResidentDetails, VisitorManagement.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-05-14 12:11:00.426 +05:30 [INF] Executed action VisitorManagement.API.Controllers.ResidentController.Search (VisitorManagement.API) in 69.0603ms
+2023-05-14 12:11:00.426 +05:30 [INF] Executed endpoint 'VisitorManagement.API.Controllers.ResidentController.Search (VisitorManagement.API)'
+2023-05-14 12:11:00.426 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/api/Resident/ash?LastName=ash - - - 200 - application/json;+charset=utf-8 78.8198ms
+2023-05-14 12:11:03.639 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/api/Resident/ash?LastName=ash - -
+2023-05-14 12:11:03.640 +05:30 [INF] Executing endpoint 'VisitorManagement.API.Controllers.ResidentController.Search (VisitorManagement.API)'
+2023-05-14 12:11:03.641 +05:30 [INF] Route matched with {action = "Search", controller = "Resident"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[VisitorManagement.Models.ResidentDetails]]] Search(Int32, System.String, System.String) on controller VisitorManagement.API.Controllers.ResidentController (VisitorManagement.API).
+2023-05-14 12:11:03.823 +05:30 [INF] Executed DbCommand (104ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ResidentId], [r].[FirstName], [r].[Flatnumber], [r].[LastName]
+FROM [ResidentDetails] AS [r]
+2023-05-14 12:11:03.824 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[VisitorManagement.Models.ResidentDetails, VisitorManagement.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-05-14 12:11:03.824 +05:30 [INF] Executed action VisitorManagement.API.Controllers.ResidentController.Search (VisitorManagement.API) in 183.7453ms
+2023-05-14 12:11:03.825 +05:30 [INF] Executed endpoint 'VisitorManagement.API.Controllers.ResidentController.Search (VisitorManagement.API)'
+2023-05-14 12:11:03.825 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/api/Resident/ash?LastName=ash - - - 200 - application/json;+charset=utf-8 185.9165ms
+2023-05-14 12:11:37.317 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2023-05-14 12:11:37.348 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/swagger/index.html - -
+2023-05-14 12:11:37.398 +05:30 [INF] Hosting environment: Development
+2023-05-14 12:11:37.398 +05:30 [INF] Content root path: C:\Users\Nivetha M\OneDrive\Desktop\Resumefolder\Latest_resume_March23\May_TEST\SocietyVisitorManagement\VisitorManagement.API\
+2023-05-14 12:11:38.198 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/_vs/browserLink - -
+2023-05-14 12:11:38.198 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/_framework/aspnetcore-browser-refresh.js - -
+2023-05-14 12:11:38.227 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/swagger/index.html - - - 200 - text/html;charset=utf-8 879.2216ms
+2023-05-14 12:11:38.241 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/_framework/aspnetcore-browser-refresh.js - - - 200 12012 application/javascript;+charset=utf-8 22.8607ms
+2023-05-14 12:11:38.291 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 93.0576ms
+2023-05-14 12:11:38.332 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/swagger/v1/swagger.json - -
+2023-05-14 12:11:38.584 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 251.6501ms
+2023-05-14 12:11:57.477 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/api/Resident/Nivetha?FirstName=Nivetha - -
+2023-05-14 12:11:57.502 +05:30 [INF] Executing endpoint 'VisitorManagement.API.Controllers.ResidentController.Search (VisitorManagement.API)'
+2023-05-14 12:11:57.550 +05:30 [INF] Route matched with {action = "Search", controller = "Resident"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[VisitorManagement.Models.ResidentDetails]]] Search(Int32, System.String, System.String) on controller VisitorManagement.API.Controllers.ResidentController (VisitorManagement.API).
+2023-05-14 12:13:42.585 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2023-05-14 12:13:42.610 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/swagger/index.html - -
+2023-05-14 12:13:42.655 +05:30 [INF] Hosting environment: Development
+2023-05-14 12:13:42.656 +05:30 [INF] Content root path: C:\Users\Nivetha M\OneDrive\Desktop\Resumefolder\Latest_resume_March23\May_TEST\SocietyVisitorManagement\VisitorManagement.API\
+2023-05-14 12:13:43.447 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/_vs/browserLink - -
+2023-05-14 12:13:43.447 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/_framework/aspnetcore-browser-refresh.js - -
+2023-05-14 12:13:43.459 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/swagger/index.html - - - 200 - text/html;charset=utf-8 855.1578ms
+2023-05-14 12:13:43.468 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/_framework/aspnetcore-browser-refresh.js - - - 200 12012 application/javascript;+charset=utf-8 9.6243ms
+2023-05-14 12:13:43.528 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 80.6783ms
+2023-05-14 12:13:43.572 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/swagger/v1/swagger.json - -
+2023-05-14 12:13:43.833 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 260.9441ms
+2023-05-14 12:14:06.524 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/api/Resident/Nivetha?FirstName=Nivetha - -
+2023-05-14 12:14:06.555 +05:30 [INF] Executing endpoint 'VisitorManagement.API.Controllers.ResidentController.Search (VisitorManagement.API)'
+2023-05-14 12:14:06.615 +05:30 [INF] Route matched with {action = "Search", controller = "Resident"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[VisitorManagement.Models.ResidentDetails]]] Search(Int32, System.String, System.String) on controller VisitorManagement.API.Controllers.ResidentController (VisitorManagement.API).
+2023-05-14 12:14:23.931 +05:30 [INF] Executed DbCommand (131ms) [Parameters=[@__FN_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ResidentId], [r].[FirstName], [r].[Flatnumber], [r].[LastName]
+FROM [ResidentDetails] AS [r]
+WHERE (@__FN_0 LIKE N'') OR CHARINDEX(@__FN_0, [r].[FirstName]) > 0
+2023-05-14 12:14:33.364 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[VisitorManagement.Models.ResidentDetails, VisitorManagement.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-05-14 12:14:52.933 +05:30 [INF] Executed action VisitorManagement.API.Controllers.ResidentController.Search (VisitorManagement.API) in 46310.944ms
+2023-05-14 12:14:52.935 +05:30 [INF] Executed endpoint 'VisitorManagement.API.Controllers.ResidentController.Search (VisitorManagement.API)'
+2023-05-14 12:14:52.975 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/api/Resident/Nivetha?FirstName=Nivetha - - - 200 - application/json;+charset=utf-8 46450.9511ms
+2023-05-14 12:17:56.474 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2023-05-14 12:17:56.499 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/swagger/index.html - -
+2023-05-14 12:17:56.539 +05:30 [INF] Hosting environment: Development
+2023-05-14 12:17:56.539 +05:30 [INF] Content root path: C:\Users\Nivetha M\OneDrive\Desktop\Resumefolder\Latest_resume_March23\May_TEST\SocietyVisitorManagement\VisitorManagement.API\
+2023-05-14 12:17:57.430 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/swagger/index.html - - - 200 - text/html;charset=utf-8 937.1906ms
+2023-05-14 12:17:57.478 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/_framework/aspnetcore-browser-refresh.js - -
+2023-05-14 12:17:57.506 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/_vs/browserLink - -
+2023-05-14 12:17:57.524 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/_framework/aspnetcore-browser-refresh.js - - - 200 12012 application/javascript;+charset=utf-8 33.3160ms
+2023-05-14 12:17:57.578 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 71.7155ms
+2023-05-14 12:17:57.635 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/swagger/v1/swagger.json - -
+2023-05-14 12:17:57.849 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 214.0744ms
+2023-05-14 12:18:15.299 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/api/Resident/Nivetha?FirstName=Nivetha - -
+2023-05-14 12:18:15.329 +05:30 [INF] Executing endpoint 'VisitorManagement.API.Controllers.ResidentController.Search (VisitorManagement.API)'
+2023-05-14 12:18:15.398 +05:30 [INF] Route matched with {action = "Search", controller = "Resident"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[VisitorManagement.API.DTO.CategoryDTO.GetResidentDTO]]] Search(Int32, System.String, System.String) on controller VisitorManagement.API.Controllers.ResidentController (VisitorManagement.API).
+2023-05-14 12:18:21.158 +05:30 [INF] Executed DbCommand (134ms) [Parameters=[@__FN_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[ResidentId], [r].[FirstName], [r].[Flatnumber], [r].[LastName]
+FROM [ResidentDetails] AS [r]
+WHERE (@__FN_0 LIKE N'') OR CHARINDEX(@__FN_0, [r].[FirstName]) > 0
+2023-05-14 12:18:21.304 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[VisitorManagement.Models.ResidentDetails, VisitorManagement.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-05-14 12:18:21.333 +05:30 [INF] Executed action VisitorManagement.API.Controllers.ResidentController.Search (VisitorManagement.API) in 5929.4727ms
+2023-05-14 12:18:21.335 +05:30 [INF] Executed endpoint 'VisitorManagement.API.Controllers.ResidentController.Search (VisitorManagement.API)'
+2023-05-14 12:18:21.354 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/api/Resident/Nivetha?FirstName=Nivetha - - - 200 - application/json;+charset=utf-8 6055.6343ms
+2023-05-14 12:28:30.416 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2023-05-14 12:28:30.453 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/swagger/index.html - -
+2023-05-14 12:28:30.488 +05:30 [INF] Hosting environment: Development
+2023-05-14 12:28:30.489 +05:30 [INF] Content root path: C:\Users\Nivetha M\OneDrive\Desktop\Resumefolder\Latest_resume_March23\May_TEST\SocietyVisitorManagement\VisitorManagement.API\
+2023-05-14 12:28:31.408 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/swagger/index.html - - - 200 - text/html;charset=utf-8 961.7990ms
+2023-05-14 12:28:31.472 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/_framework/aspnetcore-browser-refresh.js - -
+2023-05-14 12:28:31.496 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/_vs/browserLink - -
+2023-05-14 12:28:31.586 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/_framework/aspnetcore-browser-refresh.js - - - 200 12012 application/javascript;+charset=utf-8 106.1128ms
+2023-05-14 12:28:31.648 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 176.7195ms
+2023-05-14 12:28:31.698 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/swagger/v1/swagger.json - -
+2023-05-14 12:28:31.933 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 234.5721ms
+2023-05-14 12:29:03.980 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/api/Visitor - -
+2023-05-14 12:29:04.017 +05:30 [INF] Executing endpoint 'VisitorManagement.API.Controllers.VisitorController.GetVisitorDetails (VisitorManagement.API)'
+2023-05-14 12:29:04.059 +05:30 [INF] Route matched with {action = "GetVisitorDetails", controller = "Visitor"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetVisitorDetails() on controller VisitorManagement.API.Controllers.VisitorController (VisitorManagement.API).
+2023-05-14 12:29:10.651 +05:30 [INF] Executing GetVisitorDetails
+2023-05-14 12:29:13.161 +05:30 [INF] Executed DbCommand (173ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [v].[VisitorId], [v].[MobileNo], [v].[Reason], [v].[VehicleNo], [v].[VisitorCategoryId], [v].[VisitorFirstName], [v].[VisitorLastName]
+FROM [Visitordetails] AS [v]
+2023-05-14 12:29:13.342 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[VisitorManagement.API.DTO.CategoryDTO.GetVisitorDTO, VisitorManagement.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-05-14 12:29:13.373 +05:30 [INF] Executed action VisitorManagement.API.Controllers.VisitorController.GetVisitorDetails (VisitorManagement.API) in 9309.0455ms
+2023-05-14 12:29:13.376 +05:30 [INF] Executed endpoint 'VisitorManagement.API.Controllers.VisitorController.GetVisitorDetails (VisitorManagement.API)'
+2023-05-14 12:29:13.401 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/api/Visitor - - - 200 - application/json;+charset=utf-8 9422.2657ms
+2023-05-14 12:30:10.528 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/api/Visitor/TN29?VehicleNO=tn29 - -
+2023-05-14 12:30:10.533 +05:30 [INF] Executing endpoint 'VisitorManagement.API.Controllers.VisitorController.Search (VisitorManagement.API)'
+2023-05-14 12:30:10.554 +05:30 [INF] Route matched with {action = "Search", controller = "Visitor"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[VisitorManagement.Models.Visitordetails]]] Search(System.String, System.String) on controller VisitorManagement.API.Controllers.VisitorController (VisitorManagement.API).
+2023-05-14 12:30:10.968 +05:30 [INF] Executed DbCommand (129ms) [Parameters=[@__vehicleno_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [v].[VisitorId], [v].[MobileNo], [v].[Reason], [v].[VehicleNo], [v].[VisitorCategoryId], [v].[VisitorFirstName], [v].[VisitorLastName]
+FROM [Visitordetails] AS [v]
+WHERE (@__vehicleno_0 LIKE N'') OR CHARINDEX(@__vehicleno_0, [v].[VehicleNo]) > 0
+2023-05-14 12:30:10.976 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[VisitorManagement.Models.Visitordetails, VisitorManagement.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-05-14 12:30:10.983 +05:30 [INF] Executed action VisitorManagement.API.Controllers.VisitorController.Search (VisitorManagement.API) in 428.8995ms
+2023-05-14 12:30:10.983 +05:30 [INF] Executed endpoint 'VisitorManagement.API.Controllers.VisitorController.Search (VisitorManagement.API)'
+2023-05-14 12:30:10.983 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/api/Visitor/TN29?VehicleNO=tn29 - - - 200 - application/json;+charset=utf-8 455.5847ms
+2023-05-14 12:30:19.930 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/api/Visitor/TN29?VehicleNO=TN29 - -
+2023-05-14 12:30:19.942 +05:30 [INF] Executing endpoint 'VisitorManagement.API.Controllers.VisitorController.Search (VisitorManagement.API)'
+2023-05-14 12:30:19.942 +05:30 [INF] Route matched with {action = "Search", controller = "Visitor"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[VisitorManagement.Models.Visitordetails]]] Search(System.String, System.String) on controller VisitorManagement.API.Controllers.VisitorController (VisitorManagement.API).
+2023-05-14 12:30:20.008 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[@__vehicleno_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [v].[VisitorId], [v].[MobileNo], [v].[Reason], [v].[VehicleNo], [v].[VisitorCategoryId], [v].[VisitorFirstName], [v].[VisitorLastName]
+FROM [Visitordetails] AS [v]
+WHERE (@__vehicleno_0 LIKE N'') OR CHARINDEX(@__vehicleno_0, [v].[VehicleNo]) > 0
+2023-05-14 12:30:20.008 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[VisitorManagement.Models.Visitordetails, VisitorManagement.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-05-14 12:30:20.008 +05:30 [INF] Executed action VisitorManagement.API.Controllers.VisitorController.Search (VisitorManagement.API) in 65.8757ms
+2023-05-14 12:30:20.008 +05:30 [INF] Executed endpoint 'VisitorManagement.API.Controllers.VisitorController.Search (VisitorManagement.API)'
+2023-05-14 12:30:20.009 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/api/Visitor/TN29?VehicleNO=TN29 - - - 200 - application/json;+charset=utf-8 78.2000ms
+2023-05-14 12:30:32.632 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44377/api/Visitor/TN29?VehicleNO=tn108 - -
+2023-05-14 12:30:32.632 +05:30 [INF] Executing endpoint 'VisitorManagement.API.Controllers.VisitorController.Search (VisitorManagement.API)'
+2023-05-14 12:30:32.632 +05:30 [INF] Route matched with {action = "Search", controller = "Visitor"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[VisitorManagement.Models.Visitordetails]]] Search(System.String, System.String) on controller VisitorManagement.API.Controllers.VisitorController (VisitorManagement.API).
+2023-05-14 12:30:32.642 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[@__vehicleno_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [v].[VisitorId], [v].[MobileNo], [v].[Reason], [v].[VehicleNo], [v].[VisitorCategoryId], [v].[VisitorFirstName], [v].[VisitorLastName]
+FROM [Visitordetails] AS [v]
+WHERE (@__vehicleno_0 LIKE N'') OR CHARINDEX(@__vehicleno_0, [v].[VehicleNo]) > 0
+2023-05-14 12:30:32.643 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[VisitorManagement.Models.Visitordetails, VisitorManagement.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-05-14 12:30:32.643 +05:30 [INF] Executed action VisitorManagement.API.Controllers.VisitorController.Search (VisitorManagement.API) in 10.7407ms
+2023-05-14 12:30:32.643 +05:30 [INF] Executed endpoint 'VisitorManagement.API.Controllers.VisitorController.Search (VisitorManagement.API)'
+2023-05-14 12:30:32.643 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44377/api/Visitor/TN29?VehicleNO=tn108 - - - 200 - application/json;+charset=utf-8 11.5578ms
