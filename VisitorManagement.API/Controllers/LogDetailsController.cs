@@ -2,6 +2,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using VisitorManagement.API.DTO.CategoryDTO;
+using VisitorManagement.API.InputModels;
 using VisitorManagement.Models;
 using VisitorManagement.Service.IRepoInfo;
 
@@ -9,26 +10,29 @@ namespace VisitorManagement.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LogdetailsController : ControllerBase
+    public class LogDetailsController : ControllerBase
     {
-        private readonly IVisitorLogRepo _visitorLogRepo;
+        private readonly IVisitorLogRepository _visitorLogSerrvice;
         private readonly IMapper _mapper;
         private readonly ILogger _logger;
-        public LogdetailsController(IVisitorLogRepo visitorLogRepo,IMapper mapper,ILogger<LogdetailsController> logger)
+        private readonly IPaginationServices<CreateLogDTO, VisitorLogsDetails> _paginationServices;
+        public LogDetailsController(IVisitorLogRepository visitorLogRepo,IMapper mapper,ILogger<LogDetailsController> logger,IPaginationServices<CreateLogDTO,VisitorLogsDetails> pagination)
         {
-            _visitorLogRepo = visitorLogRepo;
+            _visitorLogSerrvice = visitorLogRepo;
             _mapper = mapper;
             _logger = logger;
+            _paginationServices = pagination;
 
         }
+        #region Get Visitior Log details
         [HttpGet]
         public async Task<IActionResult>GetVisitorLogs()
         {
             try
             {
                 _logger.LogInformation("Executing {Action}", nameof(GetVisitorLogs));
-                var visitorLog = await _visitorLogRepo.GetAllVisitorLogs();
-                var visitorLogDto = _mapper.Map<List<GetLogsDTO>>(visitorLog);
+                var visitorLog = await _visitorLogSerrvice.GetAllVisitorLogs();   
+                var visitorLogDto = _mapper.Map<List<GetLogsDTO>>(visitorLog);  //Mapping Dto model
                 if (visitorLogDto == null)
                 {
                     _logger.LogError($"Error while try to get VisitorLog records");
@@ -42,13 +46,16 @@ namespace VisitorManagement.API.Controllers
                                     "Error retrieving visitor log from the database based on Id");
             }
         }
+        #endregion
+
+        #region Get Visitor Log By Id
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetVisitorLogById(int id)
         {
             try
             {
                 _logger.LogInformation("Executing {Action} with id: {id}", nameof(GetVisitorLogById), id);
-                var visitorLogById = await _visitorLogRepo.GetVisitorLogById(id);
+                var visitorLogById = await _visitorLogSerrvice.GetVisitorLogById(id);
                 if (visitorLogById == null)
                 {
                     _logger.LogError($"Error while try to get visitorlog by id record");
@@ -64,6 +71,10 @@ namespace VisitorManagement.API.Controllers
                     "Error retrieving visitor log from the database based on Id");
             }
         }
+        #endregion
+
+        #region Create New Visitor Log
+
         [HttpPost]
         public async Task<IActionResult> AddVisitorLogs([FromBody] CreateLogDTO addvisitorslog)
         {
@@ -75,7 +86,7 @@ namespace VisitorManagement.API.Controllers
 
                     _logger.LogInformation("Executing {Action} ", nameof(AddVisitorLogs));
                     var addLogs = _mapper.Map<VisitorLogsDetails>(addvisitorslog);
-                    await _visitorLogRepo.CreateVisitorLog(addLogs);
+                    await _visitorLogSerrvice.CreateVisitorLog(addLogs);
                     return CreatedAtAction("AddVisitorLogs", new { id = addLogs.VisitorLogId }, addLogs);
                 }
                 else
@@ -89,8 +100,10 @@ namespace VisitorManagement.API.Controllers
               "Error creating new visitor log record");
             }
         }
-        [HttpPut]
+        #endregion
 
+        #region Updating Existing Visitor Log
+        [HttpPut]
         public async Task<IActionResult> UpdateVisitorLog(UpdateDTO updatelog)
         {
             try
@@ -101,7 +114,7 @@ namespace VisitorManagement.API.Controllers
                     return BadRequest();
                 }
                 var updatelogs = _mapper.Map<VisitorLogsDetails>(updatelog);
-                await _visitorLogRepo.UpdateVisitorLog(updatelogs);
+                await _visitorLogSerrvice.UpdateVisitorLog(updatelogs);
                 return NoContent();
             }
             catch(Exception)
@@ -110,6 +123,9 @@ namespace VisitorManagement.API.Controllers
                "Error updating visitor log details data");
             }
         }
+        #endregion
+
+        #region Delete Visitor Log By Id
         [HttpDelete]
         [Route("{id:int}")]
         public async Task<IActionResult> DeleteVisitorlogs(int id)
@@ -121,8 +137,8 @@ namespace VisitorManagement.API.Controllers
                 {
                     return BadRequest();
                 }
-                var logById = await _visitorLogRepo.GetVisitorLogById(id);
-                await _visitorLogRepo.DeleteVisitoryLog(logById);
+                var logById = await _visitorLogSerrvice.GetVisitorLogById(id);
+                await _visitorLogSerrvice.DeleteVisitoryLog(logById);
                 return NoContent();
             }
             catch (Exception)
@@ -131,6 +147,18 @@ namespace VisitorManagement.API.Controllers
                                     "Error DeleteVisitorlogs data");
             }
         }
+        #endregion
 
+        #region Pagination for Visitior Logs
+
+        [HttpPost]
+        [Route("GetPagination")]
+        public async Task<IActionResult> GetPaginationForLogs([FromBody]PaginationInput paginationInput)
+        {
+            var visitorLogs = await _visitorLogSerrvice.GetAllVisitorLogs();
+            var result =  _paginationServices.GetPagination(visitorLogs, paginationInput);
+            return Ok(result);
+        }
+        #endregion
     }
 }
