@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
@@ -33,7 +33,7 @@ namespace VisitorManagement.DataAccess
 
 
 
-            modelBuilder.Entity<Visitordetails>()
+            modelBuilder.Entity<VisitorDetails>()
         .HasMany(e => e.VisitorLog)
         .WithOne(e => e.visitordetails)
         .HasForeignKey(e => e.VisitorId)
@@ -47,7 +47,7 @@ namespace VisitorManagement.DataAccess
        .IsRequired();
         }
         public DbSet<VisitorCategoryDetails> VisitorCategoryDetail { get; set; }
-        public DbSet<Visitordetails> Visitordetails { get; set; }
+        public DbSet<VisitorDetails> Visitordetails { get; set; }
         public DbSet<ResidentDetails> ResidentDetails { get; set; }
         public DbSet<VisitorLogsDetails> LogDetails { get; set; }
       
