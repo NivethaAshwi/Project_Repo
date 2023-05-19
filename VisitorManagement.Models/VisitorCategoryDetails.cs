@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +18,9 @@ namespace VisitorManagement.Models
         public string CategoryName { get; set; } = string.Empty;
         [MaxLength(40)]
         public string categoryDescription { get; set; } = string.Empty;
-        public ICollection<Visitordetails> Visitordetails { get; } = new List<Visitordetails>(); // Collection navigation containing dependents
+        public ICollection<VisitorDetails> Visitordetails { get; } = new List<VisitorDetails>(); // Collection navigation containing dependents
     }
-    public class Visitordetails  // derived table
+    public class VisitorDetails  
     {
         [Key]
         public int VisitorId { get; set; }
